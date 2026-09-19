@@ -1,0 +1,104 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowLeft, AlertCircle } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Grievance Policy & Redressal Mechanism — TradePe Tech Pvt. Ltd.",
+  description: "Customer grievance redressal mechanism and nodal officer escalation details for TradePe Tech Pvt. Ltd.",
+};
+
+export default function GrievancePolicyPage() {
+  return (
+    <div className="min-h-screen bg-white text-[#0A0A0A] selection:bg-[#FF4D1C] selection:text-white">
+      {/* Top Bar */}
+      <header className="border-b border-black/10 py-6 px-4 sm:px-6 lg:px-8 bg-white/90 backdrop-blur-md sticky top-0 z-30">
+        <div className="max-w-4xl mx-auto flex items-center justify-between">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-[#0A0A0A] hover:text-[#FF4D1C] transition-colors"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            <span>Back to TradePe</span>
+          </Link>
+          <div className="flex items-center gap-2 font-display text-xl font-bold">
+            Trade<span className="font-italic-accent text-[#FF4D1C]">Pe</span>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <div className="mb-12 border-b border-black/10 pb-8">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/5 border border-black/10 text-xs font-mono text-[#FF4D1C] font-bold mb-4">
+            <AlertCircle className="h-3.5 w-3.5" />
+            <span>STATUTORY REDRESSAL FRAMEWORK</span>
+          </div>
+          <h1 className="font-display text-4xl sm:text-5xl font-bold tracking-tight text-[#0A0A0A] mb-4">
+            Grievance <span className="font-italic-accent text-[#FF4D1C]">Policy</span>
+          </h1>
+          <p className="font-sans text-sm text-[#0A0A0A]/60">
+            TradePe Tech Pvt. Ltd. · 61, Mittal Chambers, Nariman Point, Mumbai, Maharashtra, India - 400021
+          </p>
+        </div>
+
+        <div className="space-y-10 font-sans text-sm sm:text-base text-[#0A0A0A]/80 leading-relaxed">
+          <section className="space-y-3">
+            <h2 className="font-display text-2xl font-bold text-[#0A0A0A]">
+              1. Redressal Philosophy &amp; Commitment
+            </h2>
+            <p>
+              TradePe Tech Pvt. Ltd. is dedicated to transparent, rapid resolution of all corporate treasury and cross-border settlement grievances. Our multi-tiered grievance escalation protocol ensures issues are addressed with deterministic turnaround times.
+            </p>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="font-display text-2xl font-bold text-[#0A0A0A]">
+              2. Escalation Matrix
+            </h2>
+            
+            <div className="space-y-4">
+              {/* Level 1 */}
+              <div className="rounded-2xl bg-[#FAFAFA] border border-black/15 p-5 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-xs font-bold text-[#FF4D1C] uppercase">Level 1 — Primary Support Desk</span>
+                  <span className="font-mono text-xs text-[#0A0A0A]/50 font-semibold">TAT: 4 Hours</span>
+                </div>
+                <p className="text-xs sm:text-sm text-[#0A0A0A]/80">
+                  Contact your assigned treasury manager or email our 24/7 technical desk with your Transaction ID.
+                </p>
+                <div className="font-mono text-xs text-[#0A0A0A]">
+                  Email: <strong>contactus@tradepe.com</strong> · Phone: <strong>+91 8433708529</strong>
+                </div>
+              </div>
+
+              {/* Level 2 */}
+              <div className="rounded-2xl bg-[#FAFAFA] border border-black/15 p-5 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-xs font-bold text-[#FF4D1C] uppercase">Level 2 — Principal Grievance Officer</span>
+                  <span className="font-mono text-xs text-[#0A0A0A]/50 font-semibold">TAT: 24 Hours</span>
+                </div>
+                <p className="text-xs sm:text-sm text-[#0A0A0A]/80">
+                  If the resolution at Level 1 is unsatisfactory within 24 hours, escalate directly to the Nodal Grievance Officer.
+                </p>
+                <div className="font-mono text-xs text-[#0A0A0A] space-y-1">
+                  <div>Officer Name: <strong>Grievance Redressal Desk</strong></div>
+                  <div>Address: <strong>61, Mittal Chambers, Nariman Point, Mumbai, Maharashtra 400021</strong></div>
+                  <div>Email: <strong>contactus@tradepe.com</strong></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="space-y-3">
+            <h2 className="font-display text-2xl font-bold text-[#0A0A0A]">
+              3. Resolution Timeframes
+            </h2>
+            <p>
+              Standard settlement discrepancies or API payload queries are resolved within 4 to 24 business hours. Complex regulatory or customs reconciliation items will be acknowledged within 2 hours with daily status reports.
+            </p>
+          </section>
+        </div>
+      </main>
+    </div>
+  );
+}

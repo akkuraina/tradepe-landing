@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --brand-black: #0a0a0a;
+    --brand-white: #ffffff;
+    --brand-offwhite: #fafafa;
+    --brand-light-card: #ffffff;
+    --brand-light-card-alt: #f4f4f5;
+    --brand-orange: #ff4d1c;
+    --brand-orange-rgb: 255, 77, 28;
+    --brand-border: rgba(10, 10, 10, 0.1);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    background-color: #ffffff;
+    color: #0a0a0a;
+    font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: auto; /* Handled by Lenis */
+  }
+
+  body {
+    background-color: #ffffff;
+    color: #0a0a0a;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background: #ff4d1c;
+    color: #ffffff;
+  }
+}
+
+/* Typography Utilities */
+.font-display {
+  font-family: var(--font-fraunces), serif;
+  font-feature-settings: "liga" 1, "dlig" 1;
+}
+
+.font-italic-accent {
+  font-family: var(--font-instrument), var(--font-fraunces), serif;
+  font-style: italic;
+  font-weight: 400;
+  color: #ff4d1c;
+}
+
+.font-body {
+  font-family: var(--font-inter), sans-serif;
+}
+
+/* High-contrast brand colors */
+.bg-brand-black {
+  background-color: #0a0a0a;
+}
+.bg-brand-white {
+  background-color: #ffffff;
+}
+.bg-brand-offwhite {
+  background-color: #fafafa;
+}
+.bg-brand-orange {
+  background-color: #ff4d1c;
+}
+.text-brand-orange {
+  color: #ff4d1c;
+}
+.text-brand-black {
+  color: #0a0a0a;
+}
+.border-brand-orange {
+  border-color: #ff4d1c;
+}
+.border-brand-subtle {
+  border-color: rgba(10, 10, 10, 0.1);
+}
+
+/* Infinite Marquee */
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 28s linear infinite;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marquee-right 28s linear infinite;
+}
+
+.animate-marquee-left:hover,
+.animate-marquee-right:hover {
+  animation-play-state: paused;
+}
+
+/* Radial Glow & Subtle Effects */
+.orange-glow {
+  box-shadow: 0 0 50px -10px rgba(255, 77, 28, 0.35);
+}
+
+.orange-glow-sm {
+  box-shadow: 0 0 20px -5px rgba(255, 77, 28, 0.25);
+}
+
+/* Custom noise overlay */
+.noise-layer {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff4d1c;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
