@@ -5,8 +5,8 @@ import { useSyncExternalStore } from "react";
 import { useReducedMotion } from "framer-motion";
 import { Mobile3DFallback } from "./Mobile3DFallback";
 
-// Dynamic import with SSR disabled for R3F Canvas
-const DynamicGlobeScene = dynamic(() => import("./GlobeScene"), {
+// Dynamic import with SSR disabled — R3F uses WebGL/Three.js
+const DynamicTradeGlobe = dynamic(() => import("./TradeGlobe"), {
   ssr: false,
   loading: () => <Mobile3DFallback />,
 });
@@ -28,14 +28,22 @@ export function GlobeHeroContainer() {
   const isDesktop = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
   const prefersReducedMotion = useReducedMotion();
 
-  // Gracefully degrade on mobile (<768px) or if user prefers reduced motion
-  if (!isDesktop || prefersReducedMotion) {
+  // Only fall back to static illustration if reduced motion is requested
+  if (prefersReducedMotion) {
     return <Mobile3DFallback />;
   }
 
   return (
-    <div className="relative h-[380px] sm:h-[460px] lg:h-[560px] w-full max-w-[580px] mx-auto">
-      <DynamicGlobeScene />
+    <div
+      className="relative mx-auto flex items-center justify-center"
+      style={{
+        width: isDesktop ? 510 : 360,
+        height: isDesktop ? 510 : 360,
+        maxWidth: "100%",
+        background: "transparent",
+      }}
+    >
+      <DynamicTradeGlobe />
     </div>
   );
 }

@@ -111,18 +111,9 @@ export function Hero({ onRequestAccess }: HeroProps) {
             </motion.div>
           </motion.div>
 
-          {/* Right Column: 3D Signature Moment (5 cols) */}
+          {/* Right Column: Photoreal 3D Earth Globe (5 cols) */}
           <div className="lg:col-span-5 relative flex items-center justify-center">
-            {/* Background Halo */}
-            <div
-              className="pointer-events-none absolute h-[380px] w-[380px] rounded-full bg-[#FF4D1C]/10 blur-3xl"
-              aria-hidden="true"
-            />
-
-            {/* 3D Canvas / Dynamic Fallback */}
-            <div className="w-full relative z-10">
-              <GlobeHeroContainer />
-            </div>
+            <GlobeHeroContainer />
           </div>
 
         </div>
