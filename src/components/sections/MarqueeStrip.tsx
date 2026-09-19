@@ -3,16 +3,16 @@
 import { Marquee } from "@/components/ui/Marquee";
 
 const CORRIDORS = [
-  { pair: "USD / INR", rate: "83.672", speed: "0.02s", badge: "Direct RTGS" },
-  { pair: "EUR / SGD", rate: "1.4580", speed: "0.04s", badge: "Instant FAST" },
-  { pair: "GBP / USD", rate: "1.2942", speed: "0.01s", badge: "FedNow Direct" },
-  { pair: "AED / INR", rate: "23.531", speed: "0.02s", badge: "Direct Local" },
-  { pair: "USD / BRL", rate: "5.6820", speed: "0.07s", badge: "Pix Instant" },
-  { pair: "SGD / JPY", rate: "114.22", speed: "0.04s", badge: "Zengin Link" },
-  { pair: "EUR / INR", rate: "93.104", speed: "0.03s", badge: "Direct RTGS" },
-  { pair: "USD / AED", rate: "3.6725", speed: "0.01s", badge: "Instant CBUAE" },
-  { pair: "AUD / USD", rate: "0.6521", speed: "0.02s", badge: "Direct NPP" },
-  { pair: "CAD / INR", rate: "63.210", speed: "0.04s", badge: "Direct RTGS" },
+  { pair: "USD / INR", rate: "95.940", change: "+0.14%", isUp: true },
+  { pair: "EUR / SGD", rate: "1.4580", change: "-0.08%", isUp: false },
+  { pair: "GBP / USD", rate: "1.2942", change: "+0.31%", isUp: true },
+  { pair: "AED / INR", rate: "26.124", change: "+0.12%", isUp: true },
+  { pair: "USD / BRL", rate: "5.6820", change: "-0.45%", isUp: false },
+  { pair: "SGD / JPY", rate: "114.22", change: "+0.28%", isUp: true },
+  { pair: "EUR / INR", rate: "104.095", change: "-0.19%", isUp: false },
+  { pair: "USD / AED", rate: "3.6725", change: "+0.02%", isUp: true },
+  { pair: "AUD / USD", rate: "0.6521", change: "-0.22%", isUp: false },
+  { pair: "CAD / INR", rate: "70.544", change: "+0.18%", isUp: true },
 ];
 
 export function MarqueeStrip() {

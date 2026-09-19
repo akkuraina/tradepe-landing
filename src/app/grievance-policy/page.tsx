@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, AlertCircle } from "lucide-react";
+import { TradePeWordmark } from "@/components/TradePeWordmark";
 
 export const metadata: Metadata = {
   title: "Grievance Policy & Redressal Mechanism — TradePe Tech Pvt. Ltd.",
@@ -18,10 +19,10 @@ export default function GrievancePolicyPage() {
             className="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-[#0A0A0A] hover:text-[#FF4D1C] transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
-            <span>Back to TradePe</span>
+            <span>Back to <TradePeWordmark /></span>
           </Link>
           <div className="flex items-center gap-2 font-display text-xl font-bold">
-            Trade<span className="font-italic-accent text-[#FF4D1C]">Pe</span>
+            <TradePeWordmark />
           </div>
         </div>
       </header>
@@ -37,7 +38,7 @@ export default function GrievancePolicyPage() {
             Grievance <span className="font-italic-accent text-[#FF4D1C]">Policy</span>
           </h1>
           <p className="font-sans text-sm text-[#0A0A0A]/60">
-            TradePe Tech Pvt. Ltd. · 61, Mittal Chambers, Nariman Point, Mumbai, Maharashtra, India - 400021
+            <TradePeWordmark /> Tech Pvt. Ltd. · 61, Mittal Chambers, Nariman Point, Mumbai, Maharashtra, India - 400021
           </p>
         </div>
 
@@ -47,7 +48,7 @@ export default function GrievancePolicyPage() {
               1. Redressal Philosophy &amp; Commitment
             </h2>
             <p>
-              TradePe Tech Pvt. Ltd. is dedicated to transparent, rapid resolution of all corporate treasury and cross-border settlement grievances. Our multi-tiered grievance escalation protocol ensures issues are addressed with deterministic turnaround times.
+              <TradePeWordmark /> Tech Pvt. Ltd. is dedicated to transparent, rapid resolution of all corporate treasury and cross-border settlement grievances. Our multi-tiered grievance escalation protocol ensures issues are addressed with deterministic turnaround times.
             </p>
           </section>
 

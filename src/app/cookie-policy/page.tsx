@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, Cookie } from "lucide-react";
+import { TradePeWordmark } from "@/components/TradePeWordmark";
 
 export const metadata: Metadata = {
   title: "Cookie Policy — TradePe Tech Pvt. Ltd.",
@@ -18,10 +19,10 @@ export default function CookiePolicyPage() {
             className="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-[#0A0A0A] hover:text-[#FF4D1C] transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
-            <span>Back to TradePe</span>
+            <span>Back to <TradePeWordmark /></span>
           </Link>
           <div className="flex items-center gap-2 font-display text-xl font-bold">
-            Trade<span className="font-italic-accent text-[#FF4D1C]">Pe</span>
+            <TradePeWordmark />
           </div>
         </div>
       </header>
@@ -37,7 +38,7 @@ export default function CookiePolicyPage() {
             Cookie <span className="font-italic-accent text-[#FF4D1C]">Policy</span>
           </h1>
           <p className="font-sans text-sm text-[#0A0A0A]/60">
-            TradePe Tech Pvt. Ltd. · 61, Mittal Chambers, Nariman Point, Mumbai 400021
+            <TradePeWordmark /> Tech Pvt. Ltd. · 61, Mittal Chambers, Nariman Point, Mumbai 400021
           </p>
         </div>
 
@@ -47,7 +48,7 @@ export default function CookiePolicyPage() {
               1. What Are Cookies
             </h2>
             <p>
-              Cookies and local storage identifiers are small data packets placed on your browser or device when accessing the TradePe portal, API console, or website. They enable secure session management, prevent cross-site request forgery (CSRF), and maintain authentication tokens.
+              Cookies and local storage identifiers are small data packets placed on your browser or device when accessing the <TradePeWordmark /> portal, API console, or website. They enable secure session management, prevent cross-site request forgery (CSRF), and maintain authentication tokens.
             </p>
           </section>
 

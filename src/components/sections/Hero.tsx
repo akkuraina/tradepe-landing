@@ -37,7 +37,7 @@ export function Hero({ onRequestAccess }: HeroProps) {
   };
 
   return (
-    <section className="relative min-h-[92vh] flex flex-col justify-center pt-28 md:pt-36 pb-16 overflow-hidden bg-white">
+    <section className="relative flex flex-col justify-center pt-24 md:pt-32 pb-8 md:pb-12 overflow-hidden bg-white">
       {/* Background Subtle Atmosphere */}
       <div
         className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[600px] w-[900px] rounded-full bg-[#FF4D1C]/5 blur-[140px]"
@@ -48,15 +48,13 @@ export function Hero({ onRequestAccess }: HeroProps) {
         {/* Main Grid: Kinetic Typography on Left, 3D Interactive Signature on Right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
           
-          {/* Left Column: Kinetic Typography & CTAs (7 cols) */}
+          {/* Left Column: Kinetic Typography (7 cols) */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
             className="lg:col-span-7 flex flex-col z-10 text-left"
           >
-
-
             {/* Oversized Kinetic Headline with Editorial Italic Accent */}
             <motion.h1
               variants={itemVariants}
@@ -70,37 +68,10 @@ export function Hero({ onRequestAccess }: HeroProps) {
             {/* Editorial Body Copy */}
             <motion.p
               variants={itemVariants}
-              className="font-sans text-base sm:text-lg text-[#0A0A0A]/75 max-w-xl leading-relaxed mb-8 sm:mb-10"
+              className="font-sans text-base sm:text-lg text-[#0A0A0A]/75 max-w-xl leading-relaxed"
             >
               Direct-clearing trade corridors for global enterprises. Bypass correspondent banking hops, eliminate multi-day settlement delays, and route liquidity at institutional spot rates.
             </motion.p>
-
-            {/* CTAs with Magnetic Physics */}
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-wrap items-center gap-4 sm:gap-5 mb-10"
-            >
-              <MagneticButton
-                variant="primary"
-                size="lg"
-                onClick={onRequestAccess}
-                dataCursorText="Start"
-                ariaLabel="Deploy Direct Rails"
-              >
-                <span>Deploy Direct Rails</span>
-                <ArrowRight className="h-4 w-4" />
-              </MagneticButton>
-
-              <MagneticButton
-                variant="dark"
-                size="lg"
-                href="#simulator"
-                dataCursorText="Simulate"
-                ariaLabel="Simulate Corridor FX"
-              >
-                <span>Simulate Corridor FX</span>
-              </MagneticButton>
-            </motion.div>
           </motion.div>
 
           {/* Right Column: Photoreal 3D Earth Globe (5 cols) */}

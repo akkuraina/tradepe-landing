@@ -16,6 +16,11 @@ export function useSmoothScroll() {
   return useContext(SmoothScrollContext);
 }
 
+export function useLenis() {
+  const { getLenis } = useSmoothScroll();
+  return getLenis();
+}
+
 export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
   const prefersReducedMotion = useReducedMotion();

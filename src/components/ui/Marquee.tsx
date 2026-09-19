@@ -1,25 +1,26 @@
 "use client";
 
+import { ArrowUpRight, ArrowDownRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface MarqueeItem {
+export interface MarqueeItem {
   pair: string;
   rate?: string;
-  speed?: string;
-  badge?: string;
+  change?: string;
+  isUp?: boolean;
 }
 
 const DEFAULT_CORRIDORS: MarqueeItem[] = [
-  { pair: "USD / INR", rate: "86.42", speed: "0.02s", badge: "Direct T-0" },
-  { pair: "EUR / SGD", rate: "1.458", speed: "0.04s", badge: "Instant" },
-  { pair: "GBP / USD", rate: "1.294", speed: "0.01s", badge: "Direct T-0" },
-  { pair: "AED / INR", rate: "23.53", speed: "0.02s", badge: "Instant" },
-  { pair: "USD / BRL", rate: "5.680", speed: "0.08s", badge: "Direct T-0" },
-  { pair: "SGD / JPY", rate: "114.20", speed: "0.05s", badge: "Instant" },
-  { pair: "USD / AED", rate: "3.673", speed: "0.02s", badge: "Direct T-0" },
-  { pair: "EUR / INR", rate: "93.10", speed: "0.04s", badge: "Instant" },
-  { pair: "AUD / USD", rate: "0.652", speed: "0.03s", badge: "Direct T-0" },
-  { pair: "CAD / INR", rate: "63.20", speed: "0.04s", badge: "Instant" },
+  { pair: "USD / INR", rate: "95.940", change: "+0.14%", isUp: true },
+  { pair: "EUR / SGD", rate: "1.4580", change: "-0.08%", isUp: false },
+  { pair: "GBP / USD", rate: "1.2942", change: "+0.31%", isUp: true },
+  { pair: "AED / INR", rate: "26.124", change: "+0.12%", isUp: true },
+  { pair: "USD / BRL", rate: "5.6820", change: "-0.45%", isUp: false },
+  { pair: "SGD / JPY", rate: "114.22", change: "+0.28%", isUp: true },
+  { pair: "USD / AED", rate: "3.6725", change: "+0.02%", isUp: true },
+  { pair: "EUR / INR", rate: "104.095", change: "-0.19%", isUp: false },
+  { pair: "AUD / USD", rate: "0.6521", change: "-0.22%", isUp: false },
+  { pair: "CAD / INR", rate: "70.544", change: "+0.18%", isUp: true },
 ];
 
 interface MarqueeProps {
@@ -50,9 +51,21 @@ export function Marquee({
               {item.rate}
             </span>
           )}
-          {item.speed && (
-            <span className="ml-2 px-2 py-0.5 rounded text-[10px] md:text-xs font-semibold font-sans bg-[#FF4D1C]/10 text-[#FF4D1C] border border-[#FF4D1C]/30">
-              ⚡ {item.speed}
+          {item.change && (
+            <span
+              className={cn(
+                "ml-2.5 px-2 py-0.5 rounded text-[10px] md:text-xs font-semibold font-mono flex items-center gap-1",
+                item.isUp
+                  ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                  : "bg-rose-50 text-rose-700 border border-rose-200"
+              )}
+            >
+              {item.isUp ? (
+                <ArrowUpRight className="h-3 w-3 stroke-[2.5]" />
+              ) : (
+                <ArrowDownRight className="h-3 w-3 stroke-[2.5]" />
+              )}
+              <span>{item.change}</span>
             </span>
           )}
           {/* Orange separator */}

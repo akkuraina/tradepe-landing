@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, Scale } from "lucide-react";
+import { TradePeWordmark } from "@/components/TradePeWordmark";
 
 export const metadata: Metadata = {
   title: "Terms of Service — TradePe Tech Pvt. Ltd.",
@@ -18,10 +19,10 @@ export default function TermsConditionsPage() {
             className="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-[#0A0A0A] hover:text-[#FF4D1C] transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
-            <span>Back to TradePe</span>
+            <span>Back to <TradePeWordmark /></span>
           </Link>
           <div className="flex items-center gap-2 font-display text-xl font-bold">
-            Trade<span className="font-italic-accent text-[#FF4D1C]">Pe</span>
+            <TradePeWordmark />
           </div>
         </div>
       </header>
@@ -47,7 +48,7 @@ export default function TermsConditionsPage() {
               1. Master Services &amp; Platform Scope
             </h2>
             <p>
-              These Terms of Service (&quot;Agreement&quot;) govern access to and usage of the cross-border trade settlement infrastructure, direct clearing corridors, APIs, and multi-currency liquidity rails operated by <strong>TradePe Tech Pvt. Ltd.</strong> (&quot;TradePe&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;).
+              These Terms of Service (&quot;Agreement&quot;) govern access to and usage of the cross-border trade settlement infrastructure, direct clearing corridors, APIs, and multi-currency liquidity rails operated by <strong><TradePeWordmark /> Tech Pvt. Ltd.</strong> (&quot;TradePe&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;).
             </p>
             <p>
               By accessing our platform, integrating our APIs, or submitting an onboarding dossier, your enterprise entity agrees to be bound by these Terms, applicable Reserve Bank of India (RBI) Foreign Exchange Management Act (FEMA) regulations, and international AML/CFT directives.
@@ -68,7 +69,7 @@ export default function TermsConditionsPage() {
               3. Direct Settlement Rails &amp; Atomic Routing
             </h2>
             <p>
-              TradePe facilitates real-time instruction routing across domestic instant clearing systems (including RTGS, FedNow, SEPA Instant, Pix, and FAST). We provide deterministic conversion rates and direct-clearing status telemetry. TradePe does not operate as a speculative deposit-taking institution; funds are routed via regulated partner settlement banks and segregated escrow buffers.
+              <TradePeWordmark /> facilitates real-time instruction routing across domestic instant clearing systems (including RTGS, FedNow, SEPA Instant, Pix, and FAST). We provide deterministic conversion rates and direct-clearing status telemetry. <TradePeWordmark /> does not operate as a speculative deposit-taking institution; funds are routed via regulated partner settlement banks and segregated escrow buffers.
             </p>
           </section>
 

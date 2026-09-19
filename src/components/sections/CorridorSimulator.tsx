@@ -12,17 +12,14 @@ interface CorridorOption {
   toSymbol: string;
   rate: number;
   label: string;
-  speed: string;
-  flagFrom: string;
-  flagTo: string;
 }
 
 const CORRIDOR_OPTIONS: CorridorOption[] = [
-  { from: "USD", to: "INR", fromSymbol: "$", toSymbol: "₹", rate: 83.6723, label: "US (FedNow) ⇄ India (RTGS)", speed: "0.02s", flagFrom: "🇺🇸", flagTo: "🇮🇳" },
-  { from: "EUR", to: "SGD", fromSymbol: "€", toSymbol: "S$", rate: 1.4580, label: "EU (SEPA Instant) ⇄ Singapore (FAST)", speed: "0.04s", flagFrom: "🇪🇺", flagTo: "🇸🇬" },
-  { from: "AED", to: "INR", fromSymbol: "AED ", toSymbol: "₹", rate: 23.5310, label: "UAE (CBUAE) ⇄ India (RTGS)", speed: "0.02s", flagFrom: "🇦🇪", flagTo: "🇮🇳" },
-  { from: "GBP", to: "USD", fromSymbol: "£", toSymbol: "$", rate: 1.2942, label: "UK (Faster Payments) ⇄ US (FedNow)", speed: "0.01s", flagFrom: "🇬🇧", flagTo: "🇺🇸" },
-  { from: "USD", to: "BRL", fromSymbol: "$", toSymbol: "R$", rate: 5.6820, label: "US (FedNow) ⇄ Brazil (Pix Direct)", speed: "0.07s", flagFrom: "🇺🇸", flagTo: "🇧🇷" },
+  { from: "USD", to: "INR", fromSymbol: "$", toSymbol: "₹", rate: 95.94, label: "US (FedNow) ⇄ India (RTGS)" },
+  { from: "EUR", to: "SGD", fromSymbol: "€", toSymbol: "S$", rate: 1.4580, label: "EU (SEPA Instant) ⇄ Singapore (FAST)" },
+  { from: "AED", to: "INR", fromSymbol: "AED ", toSymbol: "₹", rate: 26.124, label: "UAE (CBUAE) ⇄ India (RTGS)" },
+  { from: "GBP", to: "USD", fromSymbol: "£", toSymbol: "$", rate: 1.2942, label: "UK (Faster Payments) ⇄ US (FedNow)" },
+  { from: "USD", to: "BRL", fromSymbol: "$", toSymbol: "R$", rate: 5.6820, label: "US (FedNow) ⇄ Brazil (Pix Direct)" },
 ];
 
 interface CorridorSimulatorProps {
@@ -48,7 +45,7 @@ export function CorridorSimulator({ onRequestAccess }: CorridorSimulatorProps) {
   };
 
   return (
-    <section id="simulator" className="relative bg-white text-[#0A0A0A] py-24 md:py-32 border-t border-black/10 scroll-mt-24">
+    <section id="simulator" className="relative bg-white text-[#0A0A0A] py-12 md:py-16 border-t border-black/10 scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header with In-View Reveal Animation */}
@@ -57,7 +54,7 @@ export function CorridorSimulator({ onRequestAccess }: CorridorSimulatorProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-3xl mx-auto mb-10"
         >
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0A0A0A] mb-4">
             Zero-margin spot rates. <span className="font-italic-accent text-[#FF4D1C]">100% transparent.</span>
@@ -86,8 +83,6 @@ export function CorridorSimulator({ onRequestAccess }: CorridorSimulatorProps) {
               currencyTo={corridor.to}
               fromSymbol={corridor.fromSymbol}
               toSymbol={corridor.toSymbol}
-              flagFrom={corridor.flagFrom}
-              flagTo={corridor.flagTo}
             />
           </div>
 
@@ -98,7 +93,7 @@ export function CorridorSimulator({ onRequestAccess }: CorridorSimulatorProps) {
                 <label className="block font-sans text-xs font-bold uppercase tracking-wider text-[#0A0A0A]/75 mb-3">
                   Select Trade Corridor
                 </label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {CORRIDOR_OPTIONS.map((item, idx) => (
                     <button
                       key={item.label}
@@ -106,18 +101,14 @@ export function CorridorSimulator({ onRequestAccess }: CorridorSimulatorProps) {
                         setSelectedCorridorIndex(idx);
                         setSimulatedProgress(false);
                       }}
-                      className={`text-left p-3 rounded-xl border transition-all flex items-center justify-between text-xs ${
+                      className={`p-3 sm:py-3.5 sm:px-4 rounded-xl border transition-all flex items-center justify-center text-xs cursor-pointer ${
                         selectedCorridorIndex === idx
                           ? "bg-white border-[#FF4D1C] text-[#0A0A0A] shadow-sm ring-1 ring-[#FF4D1C]"
                           : "bg-white/70 border-black/10 text-[#0A0A0A]/70 hover:border-black/20 hover:text-[#0A0A0A]"
                       }`}
                     >
-                      <div className="flex items-center gap-2">
-                        <span>{item.flagFrom}</span>
-                        <span className="font-mono font-bold">{item.from} ⇄ {item.to}</span>
-                      </div>
-                      <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-[#FF4D1C]/10 text-[#FF4D1C] font-bold">
-                        {item.speed}
+                      <span className="font-mono font-bold text-sm tracking-wide">
+                        {item.from} ⇄ {item.to}
                       </span>
                     </button>
                   ))}
@@ -177,7 +168,7 @@ export function CorridorSimulator({ onRequestAccess }: CorridorSimulatorProps) {
               {simulatedProgress && (
                 <div className="p-3.5 rounded-xl bg-white border border-black/10 text-xs font-mono text-[#0A0A0A] flex items-center gap-2 shadow-sm">
                   <CheckCircle2 className="h-4 w-4 text-[#107c24] shrink-0" />
-                  <span>Instant dispatch simulated in {corridor.speed} with zero FX margin.</span>
+                  <span>Instant dispatch simulated with zero FX margin.</span>
                 </div>
               )}
             </div>

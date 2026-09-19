@@ -2,6 +2,7 @@
 
 import { Check, X, ArrowRight, Server } from "lucide-react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { TradePeWordmark } from "@/components/TradePeWordmark";
 
 interface ArchitectureMatrixProps {
   onRequestAccess: () => void;
@@ -42,11 +43,11 @@ export function ArchitectureMatrix({ onRequestAccess }: ArchitectureMatrixProps)
   ];
 
   return (
-    <section id="architecture" className="relative bg-white text-[#0A0A0A] py-24 md:py-32 border-t border-black/10">
+    <section id="architecture" className="relative bg-white text-[#0A0A0A] py-24 md:py-32 border-t border-black/10 scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="max-w-3xl mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/5 border border-black/10 text-xs font-mono text-[#FF4D1C] mb-4 font-bold">
             ✦ INFRASTRUCTURE COMPARISON
           </div>
@@ -54,7 +55,7 @@ export function ArchitectureMatrix({ onRequestAccess }: ArchitectureMatrixProps)
             Why legacy banking is <span className="font-italic-accent text-[#FF4D1C]">obsolete</span>
           </h2>
           <p className="font-sans text-base text-[#0A0A0A]/70">
-            A side-by-side architectural audit between 1970s correspondent banking and TradePe modern direct clearing rails.
+            A side-by-side architectural audit between 1970s correspondent banking and <TradePeWordmark /> modern direct clearing rails.
           </p>
         </div>
 
@@ -64,7 +65,7 @@ export function ArchitectureMatrix({ onRequestAccess }: ArchitectureMatrixProps)
             <div className="md:col-span-4 text-[#0A0A0A]/70">Evaluation Parameter</div>
             <div className="md:col-span-4 text-[#0A0A0A]/50 mt-2 md:mt-0">Legacy Correspondent Banking</div>
             <div className="md:col-span-4 text-[#FF4D1C] mt-2 md:mt-0 flex items-center gap-1.5">
-              <span>TradePe Direct Rails</span>
+              <span><TradePeWordmark /> Direct Rails</span>
               <span className="h-1.5 w-1.5 rounded-full bg-[#FF4D1C] animate-pulse" />
             </div>
           </div>

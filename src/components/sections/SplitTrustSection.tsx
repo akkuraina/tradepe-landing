@@ -1,7 +1,7 @@
 "use client";
 
 import { ShieldCheck, Lock, Landmark, CheckCircle, Scale, ArrowRight } from "lucide-react";
-import { MagneticButton } from "@/components/ui/MagneticButton";
+import { TradePeWordmark } from "@/components/TradePeWordmark";
 
 interface SplitTrustSectionProps {
   onRequestAccess: () => void;
@@ -72,7 +72,7 @@ export function SplitTrustSection({ onRequestAccess }: SplitTrustSectionProps) {
             </h2>
 
             <p className="font-sans text-base sm:text-lg text-[#0A0A0A]/75 leading-relaxed">
-              Global enterprises trust TradePe to move mission-critical trade volume with zero downtime, zero counterparty risk, and airtight regulatory adherence.
+              Global enterprises trust <TradePeWordmark /> to move mission-critical trade volume with zero downtime, zero counterparty risk, and airtight regulatory adherence.
             </p>
 
             <div className="pt-4 space-y-3">

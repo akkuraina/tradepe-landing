@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { ArrowRight, ShieldCheck, Zap, Globe, CheckCircle2, Lock, Check } from "lucide-react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { TradePeWordmark } from "@/components/TradePeWordmark";
 
 interface HorizontalPillarsProps {
   onRequestAccess: () => void;
@@ -189,12 +190,12 @@ export function HorizontalPillars({ onRequestAccess }: HorizontalPillarsProps) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 md:pt-28 pb-12"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 md:pt-14 pb-2 md:pb-4"
       >
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-black/10 pb-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0A0A0A]">
-              The Three Pillars of <span className="font-italic-accent text-[#FF4D1C]">TradePe</span>
+              The Three Pillars of <TradePeWordmark />
             </h2>
           </div>
           <p className="font-sans text-sm md:text-base text-[#0A0A0A]/70 max-w-md">
@@ -231,7 +232,7 @@ export function HorizontalPillars({ onRequestAccess }: HorizontalPillarsProps) {
                             <Icon className="h-5 w-5" />
                           </div>
                           <span className="font-mono text-xs uppercase tracking-widest text-[#FF4D1C] font-bold">
-                            Pillar {pillar.id} {"//"} {pillar.tag}
+                            {pillar.tag}
                           </span>
                         </div>
 

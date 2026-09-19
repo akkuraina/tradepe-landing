@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Building } from "lucide-react";
+import { TradePeWordmark } from "@/components/TradePeWordmark";
+import { useLenis } from "@/components/ui/SmoothScroll";
 
 interface FooterProps {
   onRequestAccess?: () => void;
@@ -22,6 +24,35 @@ function LinkedInIcon({ className }: { className?: string }) {
 }
 
 export function Footer({}: FooterProps) {
+  const lenis = useLenis();
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      const targetElement = document.querySelector(href);
+      if (targetElement) {
+        if (lenis) {
+          lenis.scrollTo(href, {
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            offset: -80,
+          });
+        } else {
+          targetElement.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }
+  };
+
+  const navLinks = [
+    { name: "Why Us", href: "#pillars" },
+    { name: "Live Simulator", href: "#simulator" },
+    { name: "Metrics", href: "#metrics" },
+    { name: "FAQ's", href: "#faq" },
+    { name: "Login", href: "/404" },
+    { name: "Get Started", href: "/404" },
+  ];
+
   return (
     <footer id="footer" className="relative bg-[#FAFAFA] text-[#0A0A0A] border-t border-black/10 scroll-mt-24">
       <motion.div
@@ -45,87 +76,112 @@ export function Footer({}: FooterProps) {
         </div>
 
         {/* Part 2: Main Footer Directory */}
-        <div className="pt-4 sm:pt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8">
+        <div className="pt-2 sm:pt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 items-start text-left">
           
-          {/* Company & Address Column (5 cols) */}
-          <div className="lg:col-span-5 space-y-3">
+          {/* Company & Address Column */}
+          <div className="space-y-2 flex flex-col items-start text-left">
             <Link href="/" className="inline-block group">
-              <span className="font-display text-2xl font-bold tracking-tight text-[#0A0A0A]">
-                Trade<span className="font-italic-accent text-[#FF4D1C]">Pe</span>
+              <span className="font-display text-2xl font-bold tracking-tight">
+                <TradePeWordmark />
               </span>
             </Link>
 
-            <div className="space-y-0.5">
-              <p className="font-display text-base sm:text-lg font-bold text-[#0A0A0A]">
+            <div className="space-y-0.5 text-left">
+              <p className="font-display text-sm sm:text-base font-bold text-[#0A0A0A]">
                 India&apos;s 1st Neobank for Global Trade
-              </p>
-              <p className="font-sans text-sm font-semibold text-[#0A0A0A]/80 flex items-center gap-1.5">
-                <Building className="h-4 w-4 text-[#FF4D1C] shrink-0" />
-                TradePe Tech Pvt. Ltd.
               </p>
             </div>
 
-            <div className="flex items-start gap-2 text-xs sm:text-sm text-[#0A0A0A]/70 leading-relaxed max-w-sm">
-              <MapPin className="h-4 w-4 text-[#FF4D1C] shrink-0 mt-0.5" />
-              <span>61, Mittal Chambers, Nariman Point, Mumbai, Maharashtra, India- 400021</span>
+            <div className="flex items-start gap-1.5 text-xs text-[#0A0A0A]/70 leading-relaxed max-w-xs text-left">
+              <MapPin className="h-3.5 w-3.5 text-[#FF4D1C] shrink-0 mt-0.5" />
+              <span>61, Mittal Chambers, Nariman Point, Mumbai 400021</span>
             </div>
           </div>
 
-          {/* Legal Column (3 cols) */}
-          <div className="lg:col-span-3 space-y-2.5">
+          {/* Quick Navigation Column */}
+          <div className="space-y-2 flex flex-col items-start text-left">
+            <div className="font-sans text-xs font-bold uppercase tracking-widest text-[#0A0A0A]">
+              Navigation
+            </div>
+            <ul className="space-y-1.5 text-xs sm:text-sm text-[#0A0A0A]/75 text-left">
+              {navLinks.map((link) => (
+                <li key={link.name}>
+                  {link.href.startsWith("#") ? (
+                    <a
+                      href={link.href}
+                      onClick={(e) => handleNavClick(e, link.href)}
+                      className="hover:text-[#FF4D1C] transition-colors cursor-pointer block"
+                    >
+                      {link.name}
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="hover:text-[#FF4D1C] transition-colors block"
+                    >
+                      {link.name}
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Legal Column */}
+          <div className="space-y-2 flex flex-col items-start text-left">
             <div className="font-sans text-xs font-bold uppercase tracking-widest text-[#0A0A0A]">
               Legal
             </div>
-            <ul className="space-y-2 text-xs sm:text-sm text-[#0A0A0A]/75">
+            <ul className="space-y-1.5 text-xs sm:text-sm text-[#0A0A0A]/75 text-left">
               <li>
-                <Link href="/terms-conditions" className="hover:text-[#FF4D1C] transition-colors">
+                <Link href="/terms-conditions" className="hover:text-[#FF4D1C] transition-colors block">
                   Terms of Service
                 </Link>
               </li>
               <li>
-                <Link href="/privacy-policy" className="hover:text-[#FF4D1C] transition-colors">
+                <Link href="/privacy-policy" className="hover:text-[#FF4D1C] transition-colors block">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/cookie-policy" className="hover:text-[#FF4D1C] transition-colors">
+                <Link href="/cookie-policy" className="hover:text-[#FF4D1C] transition-colors block">
                   Cookie Policy
                 </Link>
               </li>
               <li>
-                <Link href="/grievance-policy" className="hover:text-[#FF4D1C] transition-colors">
+                <Link href="/grievance-policy" className="hover:text-[#FF4D1C] transition-colors block">
                   Grievance Policy
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Contact Us Column (4 cols) */}
-          <div className="lg:col-span-4 space-y-2.5">
+          {/* Contact Us Column */}
+          <div className="space-y-2 flex flex-col items-start text-left">
             <div className="font-sans text-xs font-bold uppercase tracking-widest text-[#0A0A0A]">
               Contact Us
             </div>
-            <ul className="space-y-2 text-xs sm:text-sm text-[#0A0A0A]/75">
+            <ul className="space-y-1.5 text-xs sm:text-sm text-[#0A0A0A]/75 flex flex-col items-start text-left">
               <li>
-                <Link href="/contact" className="hover:text-[#FF4D1C] transition-colors font-medium">
+                <Link href="/contact" className="hover:text-[#FF4D1C] transition-colors font-medium block">
                   Support Desk &amp; Inquiries
                 </Link>
               </li>
               <li>
                 <a
                   href="mailto:contactus@tradepe.com"
-                  className="hover:text-[#FF4D1C] transition-colors flex items-center gap-2 font-mono"
+                  className="hover:text-[#FF4D1C] transition-colors flex items-center gap-1.5 font-mono"
                 >
-                  <Mail className="h-4 w-4 text-[#FF4D1C] shrink-0" />
+                  <Mail className="h-3.5 w-3.5 text-[#FF4D1C] shrink-0" />
                   contactus@tradepe.com
                 </a>
               </li>
               <li>
                 <a
                   href="tel:+918433708529"
-                  className="hover:text-[#FF4D1C] transition-colors flex items-center gap-2 font-mono"
+                  className="hover:text-[#FF4D1C] transition-colors flex items-center gap-1.5 font-mono"
                 >
-                  <Phone className="h-4 w-4 text-[#FF4D1C] shrink-0" />
+                  <Phone className="h-3.5 w-3.5 text-[#FF4D1C] shrink-0" />
                   +91 8433708529
                 </a>
               </li>
@@ -134,9 +190,9 @@ export function Footer({}: FooterProps) {
                   href="https://in.linkedin.com/company/treq-tradepetech"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#FF4D1C] transition-colors flex items-center gap-2 font-mono"
+                  className="hover:text-[#FF4D1C] transition-colors flex items-center gap-1.5 font-mono"
                 >
-                  <LinkedInIcon className="h-4 w-4 text-[#FF4D1C] shrink-0" />
+                  <LinkedInIcon className="h-3.5 w-3.5 text-[#FF4D1C] shrink-0" />
                   LinkedIn
                 </a>
               </li>
@@ -147,7 +203,7 @@ export function Footer({}: FooterProps) {
 
         {/* Part 3: Centered Copyright */}
         <div className="mt-8 pt-4 text-center text-xs text-[#0A0A0A]/60">
-          © 2026 TradePe Tech Pvt. Ltd.
+          © 2026 <TradePeWordmark /> Tech Pvt. Ltd. All rights reserved.
         </div>
       </motion.div>
     </footer>

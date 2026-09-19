@@ -7,20 +7,16 @@ interface TransparentPricingCardProps {
   currencyTo?: string;
   fromSymbol?: string;
   toSymbol?: string;
-  flagFrom?: string;
-  flagTo?: string;
   className?: string;
 }
 
 export function TransparentPricingCard({
   amount = 10000,
-  rate = 83.6723,
+  rate = 95.94,
   currencyFrom = "USD",
   currencyTo = "INR",
   fromSymbol = "$",
   toSymbol = "₹",
-  flagFrom = "🇺🇸",
-  flagTo = "🇮🇳",
   className = "",
 }: TransparentPricingCardProps) {
   // Calculations matching TradePe transparent pricing formula:
@@ -60,14 +56,9 @@ export function TransparentPricingCard({
           <span className="font-sans text-xs sm:text-sm font-medium text-[#0A0A0A]/60 block">
             Client pays
           </span>
-          <div className="flex items-center gap-2">
-            <span className="text-xl sm:text-2xl" role="img" aria-label={currencyFrom}>
-              {flagFrom}
-            </span>
-            <span className="font-sans text-lg sm:text-xl font-bold text-[#0A0A0A]">
-              {currencyFrom}
-            </span>
-          </div>
+          <span className="font-sans text-lg sm:text-xl font-bold text-[#0A0A0A] block">
+            {currencyFrom}
+          </span>
         </div>
 
         {/* Input Amount Box */}
@@ -129,14 +120,9 @@ export function TransparentPricingCard({
           <span className="font-sans text-xs sm:text-sm font-medium text-[#0A0A0A]/60 block">
             You&apos;ll receive
           </span>
-          <div className="flex items-center gap-2">
-            <span className="text-xl sm:text-2xl" role="img" aria-label={currencyTo}>
-              {flagTo}
-            </span>
-            <span className="font-sans text-lg sm:text-xl font-bold text-[#0A0A0A]">
-              {currencyTo}
-            </span>
-          </div>
+          <span className="font-sans text-lg sm:text-xl font-bold text-[#0A0A0A] block">
+            {currencyTo}
+          </span>
         </div>
 
         {/* Output Box */}

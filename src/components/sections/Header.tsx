@@ -1,34 +1,34 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight, Activity } from "lucide-react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { useSmoothScroll } from "@/components/ui/SmoothScroll";
+import { useSmoothScroll, useLenis } from "@/components/ui/SmoothScroll";
 import { cn } from "@/lib/utils";
+
+import { TradePeWordmark } from "@/components/TradePeWordmark";
 
 interface HeaderProps {
   onRequestAccess?: () => void;
 }
 
-export function Header({}: HeaderProps) {
+export function Header({ onRequestAccess }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { getLenis } = useSmoothScroll();
+  const lenis = useLenis();
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      setScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
-    { name: "Pillars", href: "#pillars" },
-    { name: "Live Simulator", href: "#simulator" },
-    { name: "Why Us", href: "#metrics" },
+    { name: "Why Us", href: "#pillars" },
+    { name: "Simulator", href: "#simulator" },
     { name: "FAQ's", href: "#faq" },
     { name: "Contact Us", href: "#footer" },
   ];
@@ -37,33 +37,32 @@ export function Header({}: HeaderProps) {
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
-    if (href.startsWith("#") || href === "/") {
-      e.preventDefault();
-      setMobileMenuOpen(false);
+    e.preventDefault();
+    setMobileMenuOpen(false);
 
-      const lenis = getLenis();
-      if (href === "/") {
-        if (lenis) {
-          lenis.scrollTo(0, {
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          });
-        } else {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }
-        return;
-      }
-
+    if (href === "/") {
       if (lenis) {
-        lenis.scrollTo(href, {
-          offset: -80,
+        lenis.scrollTo(0, {
           duration: 1.2,
           easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         });
       } else {
-        const target = document.querySelector(href);
-        if (target) {
-          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      return;
+    }
+
+    if (href.startsWith("#")) {
+      const targetElement = document.querySelector(href);
+      if (targetElement) {
+        if (lenis) {
+          lenis.scrollTo(href, {
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            offset: -80,
+          });
+        } else {
+          targetElement.scrollIntoView({ behavior: "smooth" });
         }
       }
     }
@@ -87,8 +86,8 @@ export function Header({}: HeaderProps) {
             className="flex items-center group cursor-pointer"
             aria-label="TradePe Home"
           >
-            <span className="font-display text-2xl font-bold tracking-tight text-[#0A0A0A]">
-              Trade<span className="font-italic-accent text-[#FF4D1C]">Pe</span>
+            <span className="font-display text-2xl font-bold tracking-tight">
+              <TradePeWordmark />
             </span>
           </a>
 

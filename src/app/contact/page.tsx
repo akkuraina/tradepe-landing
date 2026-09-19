@@ -2,18 +2,22 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, Mail, Phone, MapPin, Building, Send, CheckCircle2, ShieldCheck } from "lucide-react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { TradePeWordmark } from "@/components/TradePeWordmark";
 
 export default function ContactPage() {
-  const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     subject: "Treasury Rails Inquiry",
+    company: "",
+    volume: "$1M - $10M / mo",
+    corridors: "",
     message: "",
   });
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,10 +34,10 @@ export default function ContactPage() {
             className="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-[#0A0A0A] hover:text-[#FF4D1C] transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
-            <span>Back to TradePe</span>
+            <span>Back to <TradePeWordmark /></span>
           </Link>
           <div className="flex items-center gap-2 font-display text-xl font-bold">
-            Trade<span className="font-italic-accent text-[#FF4D1C]">Pe</span>
+            <TradePeWordmark />
           </div>
         </div>
       </header>
@@ -47,7 +51,7 @@ export default function ContactPage() {
             ✦ INSTITUTIONAL SUPPORT DESK
           </div>
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[#0A0A0A] mb-3">
-            Contact <span className="font-italic-accent text-[#FF4D1C]">TradePe</span>
+            Contact <TradePeWordmark />
           </h1>
           <p className="font-sans text-base text-[#0A0A0A]/70 max-w-2xl">
             Get in touch with our liquidity desk, regulatory engineers, or executive treasury leadership.
@@ -64,7 +68,7 @@ export default function ContactPage() {
                   Corporate Headquarters
                 </span>
                 <h2 className="font-display text-2xl font-bold text-[#0A0A0A]">
-                  TradePe Tech Pvt. Ltd.
+                  <TradePeWordmark /> Tech Pvt. Ltd.
                 </h2>
                 <p className="font-display text-sm text-[#0A0A0A]/70 italic">
                   India&apos;s 1st Neobank for Global Trade
@@ -217,7 +221,7 @@ export default function ContactPage() {
                     Message <span className="font-italic-accent text-[#FF4D1C]">Received</span>
                   </h3>
                   <p className="font-sans text-sm text-[#0A0A0A]/70 max-w-md mx-auto">
-                    Thank you, {formData.name || "there"}. A dedicated TradePe liquidity specialist will respond to <strong>{formData.email}</strong> within 2 hours.
+                    Thank you, {formData.name || "there"}. A dedicated <TradePeWordmark /> liquidity specialist will respond to <strong>{formData.email}</strong> within 2 hours.
                   </p>
                   <div className="pt-4">
                     <MagneticButton

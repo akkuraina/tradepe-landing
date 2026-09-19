@@ -4,6 +4,7 @@ import { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { X, CheckCircle2, ArrowRight, ShieldCheck, Sparkles, Building2, Globe2, Mail } from "lucide-react";
 import confetti from "canvas-confetti";
+import { TradePeWordmark } from "@/components/TradePeWordmark";
 import { MagneticButton } from "./MagneticButton";
 
 interface WaitlistModalProps {
@@ -81,7 +82,7 @@ export function WaitlistModal({
               </div>
 
               <Dialog.Title className="font-display text-2xl md:text-3xl font-bold tracking-tight text-[#0A0A0A] mb-2">
-                Request TradePe <span className="font-italic-accent">clearing</span> access
+                Request <TradePeWordmark /> <span className="font-italic-accent">clearing</span> access
               </Dialog.Title>
 
               <Dialog.Description className="font-sans text-sm text-[#0A0A0A]/70 mb-6 leading-relaxed">
@@ -231,7 +232,7 @@ export function WaitlistModal({
                 </div>
                 <div className="flex justify-between text-[#0A0A0A]/60">
                   <span>Routing Engine:</span>
-                  <span className="text-[#FF4D1C] font-mono font-bold">TradePe HyperRoute v2</span>
+                  <span className="text-[#FF4D1C] font-mono font-bold"><TradePeWordmark /> HyperRoute v2</span>
                 </div>
                 <div className="flex justify-between text-[#0A0A0A]/60">
                   <span>Target Settlement:</span>
