@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Building } from "lucide-react";
 
 interface FooterProps {
@@ -22,9 +23,14 @@ function LinkedInIcon({ className }: { className?: string }) {
 
 export function Footer({}: FooterProps) {
   return (
-    <footer className="relative bg-[#FAFAFA] text-[#0A0A0A] border-t border-black/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 pb-8">
-        
+    <footer id="footer" className="relative bg-[#FAFAFA] text-[#0A0A0A] border-t border-black/10 scroll-mt-24">
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 pb-8"
+      >
         {/* Part 1: Headline & Kinetic CTA Typography */}
         <div className="text-center pb-6 sm:pb-8">
           <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0A0A0A] max-w-2xl mx-auto">
@@ -143,8 +149,7 @@ export function Footer({}: FooterProps) {
         <div className="mt-8 pt-4 text-center text-xs text-[#0A0A0A]/60">
           © 2026 TradePe Tech Pvt. Ltd.
         </div>
-
-      </div>
+      </motion.div>
     </footer>
   );
 }

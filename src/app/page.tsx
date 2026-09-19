@@ -40,12 +40,6 @@ export default function Home() {
         {/* 4. Interactive Live Corridor Routing & Settlement Simulator */}
         <CorridorSimulator onRequestAccess={() => handleOpenAccessModal()} />
 
-        {/* 5. Infrastructure Comparison Matrix (Legacy SWIFT vs TradePe) */}
-        {/* <ArchitectureMatrix onRequestAccess={() => handleOpenAccessModal()} /> */}
-
-        {/* 6. Split-Screen Institutional Trust & Compliance Proofs */}
-        <SplitTrustSection onRequestAccess={() => handleOpenAccessModal()} />
-
         {/* 7. Animated In-View Stat Counters & Telemetry */}
         <MetricsSection />
 

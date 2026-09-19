@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { StatCounter } from "@/components/ui/StatCounter";
 
 export function MetricsSection() {
@@ -38,25 +39,57 @@ export function MetricsSection() {
     },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 35 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" as const },
+    },
+  };
+
   return (
-    <section id="metrics" className="relative bg-white text-[#0A0A0A] py-24 md:py-32 border-t border-black/10">
+    <section id="metrics" className="relative bg-white text-[#0A0A0A] py-24 md:py-32 border-t border-black/10 scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        {/* Header with In-View Reveal Animation */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0A0A0A] mb-4">
             Proven at institutional <span className="font-italic-accent text-[#FF4D1C]">scale.</span>
           </h2>
           <p className="font-sans text-base text-[#0A0A0A]/70">
             Real-time performance metrics across our distributed multi-currency clearing network.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Metrics Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Metrics Grid with Staggered In-View Animation */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
           {metrics.map((m, idx) => (
-            <div
+            <motion.div
               key={idx}
+              variants={itemVariants}
               className="rounded-3xl bg-[#FAFAFA] border border-black/15 p-6 sm:p-8 flex flex-col justify-between space-y-6 hover:border-[#FF4D1C] transition-colors group shadow-sm"
             >
               <div>
@@ -77,9 +110,9 @@ export function MetricsSection() {
               <div className="font-sans text-xs text-[#0A0A0A]/60 leading-relaxed border-t border-black/10 pt-4">
                 {m.description}
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
       </div>
     </section>

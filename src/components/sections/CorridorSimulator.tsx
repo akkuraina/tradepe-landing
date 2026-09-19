@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Zap, RefreshCw, CheckCircle2 } from "lucide-react";
 import { TransparentPricingCard } from "@/components/ui/TransparentPricingCard";
 
@@ -28,7 +29,7 @@ interface CorridorSimulatorProps {
   onRequestAccess?: () => void;
 }
 
-export function CorridorSimulator({}: CorridorSimulatorProps) {
+export function CorridorSimulator({ onRequestAccess }: CorridorSimulatorProps) {
   const [selectedCorridorIndex, setSelectedCorridorIndex] = useState(0);
   const [amount, setAmount] = useState<number>(10000);
   const [isSimulating, setIsSimulating] = useState(false);
@@ -42,25 +43,38 @@ export function CorridorSimulator({}: CorridorSimulatorProps) {
     setTimeout(() => {
       setIsSimulating(false);
       setSimulatedProgress(true);
+      if (onRequestAccess) onRequestAccess();
     }, 900);
   };
 
   return (
-    <section id="simulator" className="relative bg-white text-[#0A0A0A] py-24 md:py-32 border-t border-black/10">
+    <section id="simulator" className="relative bg-white text-[#0A0A0A] py-24 md:py-32 border-t border-black/10 scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        {/* Header with In-View Reveal Animation */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0A0A0A] mb-4">
             Zero-margin spot rates. <span className="font-italic-accent text-[#FF4D1C]">100% transparent.</span>
           </h2>
           <p className="font-sans text-base text-[#0A0A0A]/70">
             No hidden currency markups, no surprise intermediary wire cuts. See the exact fee and GST breakdown upfront before dispatching funds.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Interactive Pricing Showcase Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        {/* Interactive Pricing Showcase Grid with Staggered In-View Animation */}
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.65, delay: 0.1, ease: "easeOut" }}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
+        >
           
           {/* Left Column: Interactive Transparent Pricing Card (6 cols) */}
           <div className="lg:col-span-6 space-y-4">
@@ -168,8 +182,7 @@ export function CorridorSimulator({}: CorridorSimulatorProps) {
               )}
             </div>
           </div>
-
-        </div>
+        </motion.div>
 
       </div>
     </section>

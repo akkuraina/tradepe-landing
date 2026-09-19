@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight, Activity } from "lucide-react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { useSmoothScroll } from "@/components/ui/SmoothScroll";
 import { cn } from "@/lib/utils";
 
 interface HeaderProps {
@@ -14,6 +15,7 @@ interface HeaderProps {
 export function Header({}: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { getLenis } = useSmoothScroll();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,10 +28,46 @@ export function Header({}: HeaderProps) {
   const navLinks = [
     { name: "Pillars", href: "#pillars" },
     { name: "Live Simulator", href: "#simulator" },
-    { name: "Architecture", href: "#architecture" },
-    { name: "Institutional Trust", href: "#trust" },
-    { name: "Metrics", href: "#metrics" },
+    { name: "Why Us", href: "#metrics" },
+    { name: "FAQ's", href: "#faq" },
+    { name: "Contact Us", href: "#footer" },
   ];
+
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    if (href.startsWith("#") || href === "/") {
+      e.preventDefault();
+      setMobileMenuOpen(false);
+
+      const lenis = getLenis();
+      if (href === "/") {
+        if (lenis) {
+          lenis.scrollTo(0, {
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          });
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+        return;
+      }
+
+      if (lenis) {
+        lenis.scrollTo(href, {
+          offset: -80,
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        });
+      } else {
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    }
+  };
 
   return (
     <>
@@ -42,36 +80,38 @@ export function Header({}: HeaderProps) {
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          {/* Brand Logo */}
-          <Link
+          {/* 1. Brand Logo: TradePe (smooth-scrolls to top of page) */}
+          <a
             href="/"
+            onClick={(e) => handleNavClick(e, "/")}
             className="flex items-center group cursor-pointer"
             aria-label="TradePe Home"
           >
             <span className="font-display text-2xl font-bold tracking-tight text-[#0A0A0A]">
               Trade<span className="font-italic-accent text-[#FF4D1C]">Pe</span>
             </span>
-          </Link>
+          </a>
 
-          {/* Center Navigation Links (Desktop) */}
+          {/* 2. Center Navigation Links (Desktop) */}
           <nav className="hidden lg:flex items-center gap-1 rounded-full border border-black/10 bg-white/80 px-5 py-2 backdrop-blur-md shadow-sm">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="px-3.5 py-1.5 font-sans text-xs font-semibold uppercase tracking-wider text-[#0A0A0A]/70 hover:text-[#FF4D1C] transition-colors rounded-full"
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="px-3.5 py-1.5 font-sans text-xs font-semibold uppercase tracking-wider text-[#0A0A0A]/70 hover:text-[#FF4D1C] transition-colors rounded-full cursor-pointer"
               >
                 {link.name}
               </a>
             ))}
           </nav>
 
-          {/* Right Actions: Login & Get Started (Desktop) */}
+          {/* 3. Right Actions: Login & Get Started (Desktop -> /404) */}
           <div className="hidden sm:flex items-center gap-3">
             <MagneticButton
               variant="outline"
               size="sm"
-              href="/login"
+              href="/404"
               className="text-xs px-4 py-2 text-[#0A0A0A] border-black/20 hover:border-black hover:text-[#0A0A0A] hover:bg-black/5"
             >
               <span>Login</span>
@@ -80,7 +120,7 @@ export function Header({}: HeaderProps) {
             <MagneticButton
               variant="primary"
               size="sm"
-              href="/get-started"
+              href="/404"
               className="text-xs px-5 py-2"
             >
               <span>Get Started</span>
@@ -88,12 +128,12 @@ export function Header({}: HeaderProps) {
             </MagneticButton>
           </div>
 
-          {/* Mobile Menu Toggle */}
+          {/* Mobile Menu Toggle & CTA */}
           <div className="flex items-center gap-2 sm:hidden">
             <MagneticButton
               variant="outline"
               size="sm"
-              href="/login"
+              href="/404"
               className="px-2.5 py-1 text-xs text-[#0A0A0A] border-black/20"
             >
               Login
@@ -101,14 +141,14 @@ export function Header({}: HeaderProps) {
             <MagneticButton
               variant="primary"
               size="sm"
-              href="/get-started"
+              href="/404"
               className="px-3 py-1 text-xs"
             >
               Get Started
             </MagneticButton>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-[#0A0A0A] hover:text-[#FF4D1C] rounded-lg bg-black/5 border border-black/10"
+              className="p-2 text-[#0A0A0A] hover:text-[#FF4D1C] rounded-lg bg-black/5 border border-black/10 cursor-pointer"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? (
@@ -136,8 +176,8 @@ export function Header({}: HeaderProps) {
                 <a
                   key={link.name}
                   href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="font-display text-xl font-bold text-[#0A0A0A] hover:text-[#FF4D1C] transition-colors py-2 border-b border-black/5"
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="font-display text-xl font-bold text-[#0A0A0A] hover:text-[#FF4D1C] transition-colors py-2 border-b border-black/5 cursor-pointer"
                 >
                   {link.name}
                 </a>
@@ -152,7 +192,7 @@ export function Header({}: HeaderProps) {
                   <MagneticButton
                     variant="outline"
                     size="md"
-                    href="/login"
+                    href="/404"
                     onClick={() => setMobileMenuOpen(false)}
                     className="w-full justify-center text-[#0A0A0A] border-black/20"
                   >
@@ -161,7 +201,7 @@ export function Header({}: HeaderProps) {
                   <MagneticButton
                     variant="primary"
                     size="md"
-                    href="/get-started"
+                    href="/404"
                     onClick={() => setMobileMenuOpen(false)}
                     className="w-full justify-center"
                   >

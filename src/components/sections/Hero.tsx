@@ -55,15 +55,7 @@ export function Hero({ onRequestAccess }: HeroProps) {
             animate="visible"
             className="lg:col-span-7 flex flex-col z-10 text-left"
           >
-            {/* Top Micro-Badge */}
-            <motion.div variants={itemVariants} className="mb-6 flex items-center gap-3">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/5 border border-black/10 backdrop-blur-md">
-                <span className="h-2 w-2 rounded-full bg-[#FF4D1C] animate-pulse" />
-                <span className="font-sans text-xs font-semibold uppercase tracking-widest text-[#0A0A0A]">
-                  India&apos;s 1st Neobank for Global Trade
-                </span>
-              </div>
-            </motion.div>
+
 
             {/* Oversized Kinetic Headline with Editorial Italic Accent */}
             <motion.h1

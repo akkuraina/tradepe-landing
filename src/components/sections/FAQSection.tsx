@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import * as Accordion from "@radix-ui/react-accordion";
 import { ChevronDown } from "lucide-react";
 
@@ -27,40 +28,73 @@ export function FAQSection() {
     },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 25 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" as const },
+    },
+  };
+
   return (
-    <section className="relative bg-white text-[#0A0A0A] py-24 md:py-32 border-t border-black/10">
+    <section id="faq" className="relative bg-white text-[#0A0A0A] py-24 md:py-32 border-t border-black/10 scroll-mt-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header */}
-        <div className="text-center mb-16">
+        {/* Header with In-View Reveal Animation */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-center mb-16"
+        >
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0A0A0A] mb-4">
             Frequently answered <span className="font-italic-accent text-[#FF4D1C]">questions.</span>
           </h2>
           <p className="font-sans text-base text-[#0A0A0A]/70">
             Everything enterprise treasurers, CFOs, and developers need to know about TradePe rails.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Accordion List */}
-        <Accordion.Root type="single" collapsible className="space-y-4">
-          {faqs.map((faq, idx) => (
-            <Accordion.Item
-              key={idx}
-              value={`item-${idx}`}
-              className="rounded-3xl bg-[#FAFAFA] border border-black/15 overflow-hidden transition-colors data-[state=open]:border-[#FF4D1C]/60 shadow-sm"
-            >
-              <Accordion.Header>
-                <Accordion.Trigger className="w-full flex items-center justify-between p-6 text-left font-display text-lg sm:text-xl font-bold text-[#0A0A0A] hover:text-[#FF4D1C] transition-colors group cursor-pointer">
-                  <span>{faq.q}</span>
-                  <ChevronDown className="h-5 w-5 text-[#0A0A0A]/50 group-hover:text-[#FF4D1C] transition-transform duration-300 ease-out group-data-[state=open]:rotate-180 shrink-0 ml-4" />
-                </Accordion.Trigger>
-              </Accordion.Header>
-              <Accordion.Content className="px-6 pb-6 pt-0 font-sans text-sm sm:text-base text-[#0A0A0A]/75 leading-relaxed border-t border-black/5 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0">
-                <div className="pt-4">{faq.a}</div>
-              </Accordion.Content>
-            </Accordion.Item>
-          ))}
-        </Accordion.Root>
+        {/* Accordion List with Staggered In-View Animation */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+        >
+          <Accordion.Root type="single" collapsible className="space-y-4">
+            {faqs.map((faq, idx) => (
+              <motion.div key={idx} variants={itemVariants}>
+                <Accordion.Item
+                  value={`item-${idx}`}
+                  className="rounded-3xl bg-[#FAFAFA] border border-black/15 overflow-hidden transition-colors data-[state=open]:border-[#FF4D1C]/60 shadow-sm"
+                >
+                  <Accordion.Header>
+                    <Accordion.Trigger className="w-full flex items-center justify-between p-6 text-left font-display text-lg sm:text-xl font-bold text-[#0A0A0A] hover:text-[#FF4D1C] transition-colors group cursor-pointer">
+                      <span>{faq.q}</span>
+                      <ChevronDown className="h-5 w-5 text-[#0A0A0A]/50 group-hover:text-[#FF4D1C] transition-transform duration-300 ease-out group-data-[state=open]:rotate-180 shrink-0 ml-4" />
+                    </Accordion.Trigger>
+                  </Accordion.Header>
+                  <Accordion.Content className="px-6 pb-6 pt-0 font-sans text-sm sm:text-base text-[#0A0A0A]/75 leading-relaxed border-t border-black/5 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0">
+                    <div className="pt-4">{faq.a}</div>
+                  </Accordion.Content>
+                </Accordion.Item>
+              </motion.div>
+            ))}
+          </Accordion.Root>
+        </motion.div>
 
       </div>
     </section>

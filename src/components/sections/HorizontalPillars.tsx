@@ -182,9 +182,15 @@ export function HorizontalPillars({ onRequestAccess }: HorizontalPillarsProps) {
   ];
 
   return (
-    <section id="pillars" className="relative bg-white text-[#0A0A0A]">
-      {/* Section Header */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 md:pt-28 pb-12">
+    <section id="pillars" className="relative bg-white text-[#0A0A0A] scroll-mt-24">
+      {/* Section Header with In-View Reveal Animation */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 md:pt-28 pb-12"
+      >
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-black/10 pb-8">
           <div>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0A0A0A]">
@@ -195,7 +201,7 @@ export function HorizontalPillars({ onRequestAccess }: HorizontalPillarsProps) {
             Engineered from ground up to replace obsolete 1970s correspondent banking networks with direct sovereign settlement rails.
           </p>
         </div>
-      </div>
+      </motion.div>
 
       {/* Desktop Horizontal Scroll Experience (Pins and scrubs horizontally) */}
       {isDesktop && !prefersReducedMotion ? (
