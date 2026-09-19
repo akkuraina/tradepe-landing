@@ -6,7 +6,6 @@ import { Hero } from "@/components/sections/Hero";
 import { MarqueeStrip } from "@/components/sections/MarqueeStrip";
 import { HorizontalPillars } from "@/components/sections/HorizontalPillars";
 import { CorridorSimulator } from "@/components/sections/CorridorSimulator";
-import { ArchitectureMatrix } from "@/components/sections/ArchitectureMatrix";
 import { SplitTrustSection } from "@/components/sections/SplitTrustSection";
 import { MetricsSection } from "@/components/sections/MetricsSection";
 import { FAQSection } from "@/components/sections/FAQSection";
@@ -42,7 +41,7 @@ export default function Home() {
         <CorridorSimulator onRequestAccess={() => handleOpenAccessModal()} />
 
         {/* 5. Infrastructure Comparison Matrix (Legacy SWIFT vs TradePe) */}
-        <ArchitectureMatrix onRequestAccess={() => handleOpenAccessModal()} />
+        {/* <ArchitectureMatrix onRequestAccess={() => handleOpenAccessModal()} /> */}
 
         {/* 6. Split-Screen Institutional Trust & Compliance Proofs */}
         <SplitTrustSection onRequestAccess={() => handleOpenAccessModal()} />

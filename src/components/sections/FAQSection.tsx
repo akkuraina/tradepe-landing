@@ -33,9 +33,6 @@ export function FAQSection() {
         
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-black/5 border border-black/10 text-xs font-mono text-[#FF4D1C] mb-4 font-bold">
-            ✦ CLARITY & SPECIFICATIONS
-          </div>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0A0A0A] mb-4">
             Frequently answered <span className="font-italic-accent text-[#FF4D1C]">questions.</span>
           </h2>

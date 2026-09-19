@@ -67,10 +67,6 @@ export function SplitTrustSection({ onRequestAccess }: SplitTrustSectionProps) {
           
           {/* Left Column: Fixed / Sticky Statement (5 cols) */}
           <div className="lg:col-span-5 lg:sticky lg:top-32 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-black/5 border border-black/10 text-xs font-mono text-[#FF4D1C] font-bold">
-              ✦ INSTITUTIONAL PROOF
-            </div>
-
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#0A0A0A] leading-[1.08]">
               Engineered for institutional grade <span className="font-italic-accent text-[#FF4D1C]">resilience.</span>
             </h2>
@@ -92,17 +88,6 @@ export function SplitTrustSection({ onRequestAccess }: SplitTrustSectionProps) {
                 <CheckCircle className="h-4 w-4 text-[#FF4D1C] shrink-0" />
                 <span className="font-medium">24/7 Dedicated Treasury Desk & Key Account Engineers</span>
               </div>
-            </div>
-
-            <div className="pt-4">
-              <MagneticButton
-                variant="primary"
-                size="md"
-                onClick={onRequestAccess}
-              >
-                <span>Request Compliance Dossier</span>
-                <ArrowRight className="h-4 w-4" />
-              </MagneticButton>
             </div>
           </div>
 

@@ -100,15 +100,6 @@ export function ArchitectureMatrix({ onRequestAccess }: ArchitectureMatrixProps)
                 Ready to deprecate legacy SWIFT files? Access our unified API sandbox today.
               </span>
             </div>
-
-            <MagneticButton
-              variant="primary"
-              size="sm"
-              onClick={onRequestAccess}
-            >
-              <span>Explore API Docs</span>
-              <ArrowRight className="h-3.5 w-3.5" />
-            </MagneticButton>
           </div>
         </div>
 

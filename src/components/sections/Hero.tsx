@@ -109,39 +109,6 @@ export function Hero({ onRequestAccess }: HeroProps) {
                 <span>Simulate Corridor FX</span>
               </MagneticButton>
             </motion.div>
-
-            {/* Trust & Latency Proof Badges */}
-            <motion.div
-              variants={itemVariants}
-              className="pt-6 border-t border-black/10 grid grid-cols-2 sm:grid-cols-3 gap-4 text-left"
-            >
-              <div>
-                <div className="font-display text-xl sm:text-2xl font-bold text-[#0A0A0A]">
-                  &lt; 3.2<span className="text-[#FF4D1C] font-sans font-semibold text-lg">s</span>
-                </div>
-                <div className="font-sans text-xs text-[#0A0A0A]/60 uppercase tracking-wider mt-0.5">
-                  Median Settlement
-                </div>
-              </div>
-
-              <div>
-                <div className="font-display text-xl sm:text-2xl font-bold text-[#0A0A0A]">
-                  0<span className="text-[#FF4D1C] font-sans font-semibold text-lg">%</span>
-                </div>
-                <div className="font-sans text-xs text-[#0A0A0A]/60 uppercase tracking-wider mt-0.5">
-                  Hidden FX Markups
-                </div>
-              </div>
-
-              <div className="col-span-2 sm:col-span-1">
-                <div className="font-display text-xl sm:text-2xl font-bold text-[#0A0A0A]">
-                  $14.2<span className="text-[#FF4D1C] font-sans font-semibold text-lg">B+</span>
-                </div>
-                <div className="font-sans text-xs text-[#0A0A0A]/60 uppercase tracking-wider mt-0.5">
-                  Volume Routed
-                </div>
-              </div>
-            </motion.div>
           </motion.div>
 
           {/* Right Column: 3D Signature Moment (5 cols) */}
