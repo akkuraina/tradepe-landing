@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Mail, Phone, MapPin, Building } from "lucide-react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
@@ -10,18 +9,6 @@ interface FooterProps {
 }
 
 export function Footer({ onRequestAccess }: FooterProps) {
-  const [utcTime, setUtcTime] = useState("");
-
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      setUtcTime(now.toUTCString().split(" ").slice(4, 5)[0] + " UTC");
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <footer className="relative bg-[#FAFAFA] text-[#0A0A0A] border-t border-black/10 overflow-hidden">
       
@@ -74,10 +61,7 @@ export function Footer({ onRequestAccess }: FooterProps) {
             
             {/* Company & Address Column (5 cols) */}
             <div className="lg:col-span-5 space-y-4">
-              <Link href="/" className="flex items-center gap-2 group">
-                <div className="h-8 w-8 rounded-lg bg-[#0A0A0A] flex items-center justify-center text-white font-display font-black text-lg group-hover:bg-[#FF4D1C] transition-colors duration-300">
-                  T
-                </div>
+              <Link href="/" className="flex items-center group">
                 <span className="font-display text-2xl font-bold tracking-tight text-[#0A0A0A]">
                   Trade<span className="font-italic-accent text-[#FF4D1C]">Pe</span>
                 </span>
@@ -166,13 +150,6 @@ export function Footer({ onRequestAccess }: FooterProps) {
           <div className="mt-12 pt-8 border-t border-black/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#0A0A0A]/60">
             <div>
               © 2026 TradePe Tech Pvt. Ltd.
-            </div>
-            <div className="flex items-center gap-4 text-xs">
-              <span>Security Audited</span>
-              <span>•</span>
-              <span>ISO 20022 Native</span>
-              <span>•</span>
-              <span className="text-[#FF4D1C] font-semibold">Direct RTGS &amp; FedNow Rail SLA</span>
             </div>
           </div>
         </div>

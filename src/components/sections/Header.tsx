@@ -8,10 +8,10 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
 import { cn } from "@/lib/utils";
 
 interface HeaderProps {
-  onRequestAccess: () => void;
+  onRequestAccess?: () => void;
 }
 
-export function Header({ onRequestAccess }: HeaderProps) {
+export function Header({}: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -45,12 +45,9 @@ export function Header({ onRequestAccess }: HeaderProps) {
           {/* Brand Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2 group cursor-pointer"
+            className="flex items-center group cursor-pointer"
             aria-label="TradePe Home"
           >
-            <div className="h-8 w-8 rounded-lg bg-[#0A0A0A] flex items-center justify-center text-white font-display font-black text-lg group-hover:bg-[#FF4D1C] transition-colors duration-300">
-              T
-            </div>
             <span className="font-display text-2xl font-bold tracking-tight text-[#0A0A0A]">
               Trade<span className="font-italic-accent text-[#FF4D1C]">Pe</span>
             </span>
@@ -69,16 +66,24 @@ export function Header({ onRequestAccess }: HeaderProps) {
             ))}
           </nav>
 
-          {/* Right Action & Status */}
-          <div className="hidden sm:flex items-center gap-4">
+          {/* Right Actions: Login & Get Started (Desktop) */}
+          <div className="hidden sm:flex items-center gap-3">
+            <MagneticButton
+              variant="outline"
+              size="sm"
+              href="/login"
+              className="text-xs px-4 py-2 text-[#0A0A0A] border-black/20 hover:border-black hover:text-[#0A0A0A] hover:bg-black/5"
+            >
+              <span>Login</span>
+            </MagneticButton>
 
             <MagneticButton
               variant="primary"
               size="sm"
-              onClick={onRequestAccess}
-              dataCursorText="Join"
+              href="/get-started"
+              className="text-xs px-5 py-2"
             >
-              <span>Request Access</span>
+              <span>Get Started</span>
               <ArrowUpRight className="h-3.5 w-3.5" />
             </MagneticButton>
           </div>
@@ -86,12 +91,20 @@ export function Header({ onRequestAccess }: HeaderProps) {
           {/* Mobile Menu Toggle */}
           <div className="flex items-center gap-2 sm:hidden">
             <MagneticButton
+              variant="outline"
+              size="sm"
+              href="/login"
+              className="px-2.5 py-1 text-xs text-[#0A0A0A] border-black/20"
+            >
+              Login
+            </MagneticButton>
+            <MagneticButton
               variant="primary"
               size="sm"
-              onClick={onRequestAccess}
-              className="px-3 py-1.5 text-xs"
+              href="/get-started"
+              className="px-3 py-1 text-xs"
             >
-              Access
+              Get Started
             </MagneticButton>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -135,18 +148,27 @@ export function Header({ onRequestAccess }: HeaderProps) {
                   <Activity className="h-4 w-4 text-[#FF4D1C]" />
                   <span>Settlement Latency: &lt; 0.04s</span>
                 </div>
-                <MagneticButton
-                  variant="primary"
-                  size="md"
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    onRequestAccess();
-                  }}
-                  className="w-full justify-center"
-                >
-                  <span>Request Institutional Access</span>
-                  <ArrowUpRight className="h-4 w-4" />
-                </MagneticButton>
+                <div className="grid grid-cols-2 gap-3 pt-2">
+                  <MagneticButton
+                    variant="outline"
+                    size="md"
+                    href="/login"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="w-full justify-center text-[#0A0A0A] border-black/20"
+                  >
+                    <span>Login</span>
+                  </MagneticButton>
+                  <MagneticButton
+                    variant="primary"
+                    size="md"
+                    href="/get-started"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="w-full justify-center"
+                  >
+                    <span>Get Started</span>
+                    <ArrowUpRight className="h-4 w-4" />
+                  </MagneticButton>
+                </div>
               </div>
             </div>
           </motion.div>

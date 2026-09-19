@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Fraunces, Instrument_Serif, Inter } from "next/font/google";
 import "./globals.css";
 import { GrainOverlay } from "@/components/ui/GrainOverlay";
-import { CustomCursor } from "@/components/ui/CustomCursor";
 import { SmoothScrollProvider } from "@/components/ui/SmoothScroll";
 
 const fraunces = Fraunces({
@@ -76,7 +75,6 @@ export default function RootLayout({
       <body className="bg-white text-[#0A0A0A] antialiased selection:bg-[#FF4D1C] selection:text-white relative min-h-screen overflow-x-hidden">
         <SmoothScrollProvider>
           <GrainOverlay />
-          <CustomCursor />
           {children}
         </SmoothScrollProvider>
       </body>
