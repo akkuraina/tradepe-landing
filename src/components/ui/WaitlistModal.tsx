@@ -61,7 +61,7 @@ export function WaitlistModal({
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm transition-opacity duration-300 animate-in fade-in" />
-        <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-[94vw] max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-3xl bg-white border border-black/15 p-6 md:p-8 shadow-2xl focus:outline-none animate-in zoom-in-95 duration-200 text-[#0A0A0A]">
+        <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-[94vw] max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-3xl bg-[#F8F5EE] border border-black/10 p-6 md:p-8 shadow-2xl focus:outline-none animate-in zoom-in-95 duration-200 text-[#0A0A0A]">
           {/* Close button */}
           <Dialog.Close asChild>
             <button

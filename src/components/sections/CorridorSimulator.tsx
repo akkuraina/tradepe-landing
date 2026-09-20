@@ -45,7 +45,7 @@ export function CorridorSimulator({ onRequestAccess }: CorridorSimulatorProps) {
   };
 
   return (
-    <section id="simulator" className="relative bg-white text-[#0A0A0A] py-12 md:py-16 border-t border-black/10 scroll-mt-24">
+    <section id="simulator" className="relative bg-transparent text-[#0A0A0A] py-12 md:py-16 border-t border-black/10 scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header with In-View Reveal Animation */}
@@ -88,7 +88,7 @@ export function CorridorSimulator({ onRequestAccess }: CorridorSimulatorProps) {
 
           {/* Right Column: Controls (6 cols) */}
           <div className="lg:col-span-6 space-y-6">
-            <div className="rounded-3xl bg-[#FAFAFA] border border-black/15 p-6 sm:p-8 space-y-6 shadow-sm">
+            <div className="rounded-3xl bg-[#F8F5EE] border border-black/10 p-6 sm:p-8 space-y-6 shadow-[0_10px_35px_-5px_rgba(0,0,0,0.04)]">
               <div>
                 <label className="block font-sans text-xs font-bold uppercase tracking-wider text-[#0A0A0A]/75 mb-3">
                   Select Trade Corridor
@@ -103,8 +103,8 @@ export function CorridorSimulator({ onRequestAccess }: CorridorSimulatorProps) {
                       }}
                       className={`p-3 sm:py-3.5 sm:px-4 rounded-xl border transition-all flex items-center justify-center text-xs cursor-pointer ${
                         selectedCorridorIndex === idx
-                          ? "bg-white border-[#FF4D1C] text-[#0A0A0A] shadow-sm ring-1 ring-[#FF4D1C]"
-                          : "bg-white/70 border-black/10 text-[#0A0A0A]/70 hover:border-black/20 hover:text-[#0A0A0A]"
+                          ? "bg-[#FBF9F5] border-[#FF4D1C] text-[#0A0A0A] shadow-sm ring-1 ring-[#FF4D1C]"
+                          : "bg-[#F0ECE1]/70 border-black/10 text-[#0A0A0A]/75 hover:border-black/20 hover:text-[#0A0A0A]"
                       }`}
                     >
                       <span className="font-mono font-bold text-sm tracking-wide">

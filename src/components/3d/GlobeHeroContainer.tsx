@@ -35,7 +35,7 @@ export function GlobeHeroContainer() {
 
   return (
     <div
-      className="relative mx-auto flex items-center justify-center"
+      className="relative mx-auto flex items-center justify-center overflow-hidden"
       style={{
         width: isDesktop ? 510 : 360,
         height: isDesktop ? 510 : 360,

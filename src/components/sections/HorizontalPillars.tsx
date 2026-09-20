@@ -45,7 +45,7 @@ export function HorizontalPillars({ onRequestAccess }: HorizontalPillarsProps) {
       ],
       icon: Globe,
       cardContent: (
-        <div className="rounded-2xl bg-white border border-black/15 p-6 space-y-4 shadow-xl">
+        <div className="rounded-2xl bg-[#FBF9F5] border border-black/10 p-6 space-y-4 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.04)]">
           <div className="flex items-center justify-between border-b border-black/10 pb-4">
             <div className="flex items-center gap-2">
               <span className="h-2.5 w-2.5 rounded-full bg-[#FF4D1C]" />
@@ -76,7 +76,7 @@ export function HorizontalPillars({ onRequestAccess }: HorizontalPillarsProps) {
             </div>
           </div>
 
-          <div className="pt-2 flex items-center justify-between text-xs bg-[#FAFAFA] p-3 rounded-xl border border-black/5">
+          <div className="pt-2 flex items-center justify-between text-xs bg-[#F0ECE1] p-3 rounded-xl border border-black/5">
             <span className="text-[#0A0A0A]/70 font-medium">Account Activation Time:</span>
             <span className="text-[#FF4D1C] font-mono font-bold">INSTANT ON KYB CLEARANCE</span>
           </div>
@@ -95,7 +95,7 @@ export function HorizontalPillars({ onRequestAccess }: HorizontalPillarsProps) {
       ],
       icon: Zap,
       cardContent: (
-        <div className="rounded-2xl bg-white border border-black/15 p-6 space-y-4 shadow-xl">
+        <div className="rounded-2xl bg-[#FBF9F5] border border-black/10 p-6 space-y-4 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.04)]">
           <div className="flex items-center justify-between border-b border-black/10 pb-4">
             <div className="flex items-center gap-2">
               <span className="h-2.5 w-2.5 rounded-full bg-[#FF4D1C] animate-pulse" />
@@ -145,7 +145,7 @@ export function HorizontalPillars({ onRequestAccess }: HorizontalPillarsProps) {
       ],
       icon: ShieldCheck,
       cardContent: (
-        <div className="rounded-2xl bg-white border border-black/15 p-6 space-y-4 shadow-xl">
+        <div className="rounded-2xl bg-[#FBF9F5] border border-black/10 p-6 space-y-4 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.04)]">
           <div className="flex items-center justify-between border-b border-black/10 pb-4">
             <div className="flex items-center gap-2">
               <Lock className="h-4 w-4 text-[#FF4D1C]" />
@@ -173,7 +173,7 @@ export function HorizontalPillars({ onRequestAccess }: HorizontalPillarsProps) {
             </div>
           </div>
 
-          <div className="pt-2 flex items-center justify-between text-xs bg-[#FAFAFA] p-3 rounded-xl border border-black/5">
+          <div className="pt-2 flex items-center justify-between text-xs bg-[#F0ECE1] p-3 rounded-xl border border-black/5">
             <span className="text-[#0A0A0A]/70 font-medium">Regulatory Friction:</span>
             <span className="text-[#FF4D1C] font-mono font-bold">100% AUTOMATED</span>
           </div>
@@ -183,7 +183,7 @@ export function HorizontalPillars({ onRequestAccess }: HorizontalPillarsProps) {
   ];
 
   return (
-    <section id="pillars" className="relative bg-white text-[#0A0A0A] scroll-mt-24">
+    <section id="pillars" className="relative bg-transparent text-[#0A0A0A] scroll-mt-24">
       {/* Section Header with In-View Reveal Animation */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
@@ -216,7 +216,7 @@ export function HorizontalPillars({ onRequestAccess }: HorizontalPillarsProps) {
                     key={pillar.id}
                     className="w-screen h-full flex items-center justify-center px-8 lg:px-16"
                   >
-                    <div className="w-full max-w-6xl rounded-3xl bg-[#FAFAFA] border border-black/15 p-8 md:p-14 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center shadow-xl relative overflow-hidden">
+                    <div className="w-full max-w-6xl rounded-3xl bg-[#F8F5EE] border border-black/10 p-8 md:p-14 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center shadow-[0_10px_35px_-5px_rgba(0,0,0,0.04)] relative overflow-hidden">
                       {/* Background Watermark ID */}
                       <span
                         className="pointer-events-none absolute right-6 bottom-2 font-display text-9xl font-black text-black/[0.04] select-none"
@@ -277,7 +277,7 @@ export function HorizontalPillars({ onRequestAccess }: HorizontalPillarsProps) {
             return (
               <div
                 key={pillar.id}
-                className="rounded-2xl bg-[#FAFAFA] border border-black/15 p-6 sm:p-8 space-y-6 shadow-md relative overflow-hidden"
+                className="rounded-2xl bg-[#F8F5EE] border border-black/10 p-6 sm:p-8 space-y-6 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.04)] relative overflow-hidden"
               >
                 <span
                   className="pointer-events-none absolute right-4 bottom-2 font-display text-7xl font-black text-black/[0.04] select-none"

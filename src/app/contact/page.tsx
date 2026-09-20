@@ -25,9 +25,9 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-[#0A0A0A] selection:bg-[#FF4D1C] selection:text-white">
+    <div className="min-h-screen bg-transparent text-[#0A0A0A] selection:bg-[#FF4D1C] selection:text-white">
       {/* Top Bar */}
-      <header className="border-b border-black/10 py-6 px-4 sm:px-6 lg:px-8 bg-white/90 backdrop-blur-md sticky top-0 z-30">
+      <header className="border-b border-black/10 py-6 px-4 sm:px-6 lg:px-8 bg-[#F7F4EF]/90 backdrop-blur-md sticky top-0 z-30">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <Link
             href="/"
@@ -62,7 +62,7 @@ export default function ContactPage() {
           
           {/* Left Column: Official Contact Details (5 cols) */}
           <div className="lg:col-span-5 space-y-8">
-            <div className="rounded-3xl bg-[#FAFAFA] border border-black/15 p-8 space-y-6 shadow-sm">
+            <div className="rounded-3xl bg-[#F8F5EE] border border-black/10 p-8 space-y-6 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.04)]">
               <div className="space-y-1">
                 <span className="font-sans text-xs uppercase tracking-widest font-bold text-[#FF4D1C]">
                   Corporate Headquarters
@@ -120,7 +120,7 @@ export default function ContactPage() {
 
           {/* Right Column: Interactive Form (7 cols) */}
           <div className="lg:col-span-7">
-            <div className="rounded-3xl bg-white border border-black/15 p-8 sm:p-10 shadow-lg">
+            <div className="rounded-3xl bg-[#F8F5EE] border border-black/10 p-8 sm:p-10 shadow-[0_10px_35px_-5px_rgba(0,0,0,0.04)]">
               {!submitted ? (
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <h3 className="font-display text-2xl font-bold text-[#0A0A0A] mb-2">

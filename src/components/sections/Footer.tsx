@@ -54,7 +54,7 @@ export function Footer({}: FooterProps) {
   ];
 
   return (
-    <footer id="footer" className="relative bg-[#FAFAFA] text-[#0A0A0A] border-t border-black/10 scroll-mt-24">
+    <footer id="footer" className="relative bg-transparent text-[#0A0A0A] border-t border-black/10 scroll-mt-24">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}

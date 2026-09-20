@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 
 export default function TermsConditionsPage() {
   return (
-    <div className="min-h-screen bg-white text-[#0A0A0A] selection:bg-[#FF4D1C] selection:text-white">
+    <div className="min-h-screen bg-transparent text-[#0A0A0A] selection:bg-[#FF4D1C] selection:text-white">
       {/* Top Bar */}
-      <header className="border-b border-black/10 py-6 px-4 sm:px-6 lg:px-8 bg-white/90 backdrop-blur-md sticky top-0 z-30">
+      <header className="border-b border-black/10 py-6 px-4 sm:px-6 lg:px-8 bg-[#F7F4EF]/90 backdrop-blur-md sticky top-0 z-30">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <Link
             href="/"

@@ -37,7 +37,7 @@ export function Hero({ onRequestAccess }: HeroProps) {
   };
 
   return (
-    <section className="relative flex flex-col justify-center pt-24 md:pt-32 pb-8 md:pb-12 overflow-hidden bg-white">
+    <section className="relative flex flex-col justify-center pt-24 md:pt-32 pb-8 md:pb-12 overflow-hidden bg-transparent">
       {/* Background Subtle Atmosphere */}
       <div
         className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[600px] w-[900px] rounded-full bg-[#FF4D1C]/5 blur-[140px]"

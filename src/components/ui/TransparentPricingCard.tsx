@@ -48,7 +48,7 @@ export function TransparentPricingCard({
 
   return (
     <div
-      className={`w-full max-w-md mx-auto rounded-3xl bg-white border border-black/10 p-5 sm:p-7 shadow-[0_10px_35px_-5px_rgba(0,0,0,0.06)] select-none ${className}`}
+      className={`w-full max-w-md mx-auto rounded-3xl bg-[#F8F5EE] border border-black/10 p-5 sm:p-7 shadow-[0_10px_35px_-5px_rgba(0,0,0,0.05)] select-none ${className}`}
     >
       {/* 1. Client Pays Row */}
       <div className="flex items-center justify-between gap-4 pb-4">
@@ -62,7 +62,7 @@ export function TransparentPricingCard({
         </div>
 
         {/* Input Amount Box */}
-        <div className="rounded-2xl border border-black/15 bg-white px-5 py-3 sm:px-6 sm:py-3.5 shadow-sm min-w-[150px] text-right">
+        <div className="rounded-2xl border border-black/10 bg-[#FBF9F5] px-5 py-3 sm:px-6 sm:py-3.5 shadow-xs min-w-[150px] text-right">
           <span className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-[#0A0A0A]">
             {fromSymbol}{amount.toLocaleString()}
           </span>
@@ -126,7 +126,7 @@ export function TransparentPricingCard({
         </div>
 
         {/* Output Box */}
-        <div className="rounded-2xl border border-black/15 bg-white px-5 py-3 sm:px-6 sm:py-3.5 shadow-sm min-w-[160px] text-right">
+        <div className="rounded-2xl border border-black/10 bg-[#FBF9F5] px-5 py-3 sm:px-6 sm:py-3.5 shadow-xs min-w-[160px] text-right">
           <span className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-[#0A0A0A]">
             {formatIndianCurrency(netReceived)}
           </span>

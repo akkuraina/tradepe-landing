@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useRef, useState, Suspense } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Html, useTexture } from "@react-three/drei";
 import * as THREE from "three";
 import { useReducedMotion } from "framer-motion";
@@ -10,7 +10,7 @@ import { useSyncExternalStore } from "react";
 // Brand accent color matching the hero italic accent token ("friction")
 const BRAND_ACCENT = "#FF4D1C";
 
-// TradePe 6 core corridor cities with exact place + country labels
+// TradePe 11 trade corridor hubs (Mumbai anchor + 10 global corridors)
 const HUBS = [
   { name: "Mumbai", label: "Mumbai, India", lat: 19.076, lng: 72.8777, isAnchor: true },
   { name: "New York", label: "New York, USA", lat: 40.7128, lng: -74.006, isAnchor: false },
@@ -18,6 +18,11 @@ const HUBS = [
   { name: "Frankfurt", label: "Frankfurt, Germany", lat: 50.1109, lng: 8.6821, isAnchor: false },
   { name: "Dubai", label: "Dubai, UAE", lat: 25.2048, lng: 55.2708, isAnchor: false },
   { name: "Singapore", label: "Singapore", lat: 1.3521, lng: 103.8198, isAnchor: false },
+  { name: "São Paulo", label: "São Paulo, Brazil", lat: -23.5505, lng: -46.6333, isAnchor: false },
+  { name: "Johannesburg", label: "Johannesburg, South Africa", lat: -26.2041, lng: 28.0473, isAnchor: false },
+  { name: "Sydney", label: "Sydney, Australia", lat: -33.8688, lng: 151.2093, isAnchor: false },
+  { name: "Tokyo", label: "Tokyo, Japan", lat: 35.6762, lng: 139.6503, isAnchor: false },
+  { name: "Toronto", label: "Toronto, Canada", lat: 43.6532, lng: -79.3832, isAnchor: false },
 ];
 
 function latLngToVector3(lat: number, lng: number, radius: number): THREE.Vector3 {
@@ -32,19 +37,21 @@ function latLngToVector3(lat: number, lng: number, radius: number): THREE.Vector
 /**
  * Computes a smooth geodesic 3D arc between two spherical points,
  * lifting the trajectory radially outward along the surface normal.
+ * Scaled strictly to chord distance to prevent looping or spiky curves on short corridors.
  */
 function createSphericalArc(p1: THREE.Vector3, p2: THREE.Vector3) {
   const points: THREE.Vector3[] = [];
-  const segments = 36;
+  const segments = 48;
   const distance = p1.distanceTo(p2);
 
-  // Balanced radial lift: short arcs get prominent height (>=0.30) while distant arcs peak at 0.46
-  const maxLift = Math.min(0.46, Math.max(0.30, distance * 0.22));
+  // Proportional lift: short corridors (e.g. Mumbai -> Dubai) get a low, gentle arc (~0.07),
+  // while distant corridors scale smoothly and cap at 0.32 (never ballooning or looping)
+  const maxLift = Math.min(0.32, Math.max(0.06, distance * 0.11));
 
   const v1 = p1.clone().normalize();
   const v2 = p2.clone().normalize();
 
-  const dot = Math.min(Math.max(v1.dot(v2), -1), 1);
+  const dot = Math.min(Math.max(v1.dot(v2), -0.9999), 0.9999);
   const omega = Math.acos(dot);
   const sinOmega = Math.sin(omega);
 
@@ -85,16 +92,16 @@ function HubMarker({
 
   return (
     <group position={hub.pos}>
-      {/* 1. Visible Dot Mesh (Unlit MeshBasicMaterial, toneMapped=false for exact #FF4D1C match) */}
+      {/* 1. Visible Dot Mesh (Softened brand orange #F0562A for seamless 3D harmony) */}
       <mesh raycast={() => null}>
         <sphereGeometry args={[hub.isAnchor ? 0.055 : 0.038, 16, 16]} />
         <meshBasicMaterial
-          color="#FF4D1C"
+          color="#F0562A"
           toneMapped={false}
         />
       </mesh>
 
-      {/* 2. Invisible Hit Target Mesh (Generous 3-4x size so pointer easily triggers hover) */}
+      {/* 2. Invisible Hit Target Mesh (Generous size so pointer easily triggers hover) */}
       <mesh
         onPointerOver={(e) => {
           e.stopPropagation();
@@ -106,7 +113,7 @@ function HubMarker({
           document.body.style.cursor = "auto";
         }}
       >
-        <sphereGeometry args={[hub.isAnchor ? 0.16 : 0.12, 12, 12]} />
+        <sphereGeometry args={[hub.isAnchor ? 0.18 : 0.12, 12, 12]} />
         <meshBasicMaterial transparent opacity={0} depthWrite={false} />
       </mesh>
 
@@ -134,25 +141,22 @@ function HubMarker({
 
 function EarthSphere({ isDesktop }: { isDesktop: boolean }) {
   const earthRef = useRef<THREE.Mesh>(null);
-  const cloudsRef = useRef<THREE.Mesh>(null);
-  const prefersReducedMotion = useReducedMotion();
 
   const radius = 2.0;
   const segments = isDesktop ? 64 : 48;
 
-  // Load realistic 2K Earth textures
-  const [dayMap, normalMap, specularMap, cloudsMap] = useTexture([
+  // Load realistic 2K Earth textures without clouds
+  const [dayMap, normalMap, specularMap] = useTexture([
     "/textures/earth-daymap.jpg",
     "/textures/earth-normal.jpg",
     "/textures/earth-specular.jpg",
-    "/textures/earth-clouds.jpg",
   ]);
 
   if (dayMap) {
     dayMap.colorSpace = THREE.SRGBColorSpace;
   }
 
-  // Precompute 3D vectors for the 6 trade corridor hubs
+  // Precompute 3D vectors for the 11 trade corridor hubs
   const hubPositions = useMemo(() => {
     return HUBS.map((h) => ({
       ...h,
@@ -160,21 +164,102 @@ function EarthSphere({ isDesktop }: { isDesktop: boolean }) {
     }));
   }, [radius]);
 
-  // Precompute 5 independent trade route curves originating from Mumbai (index 0)
+  // Precompute 10 independent trade route curves originating from Mumbai (index 0)
+  // with directional departure offsets to form an elegant radial fan instead of a tangled cluster
   const routeCurves = useMemo(() => {
     const mumbaiPos = hubPositions[0].pos;
-    return hubPositions.slice(1).map((hub) => ({
-      name: hub.name,
-      curve: createSphericalArc(mumbaiPos, hub.pos),
-    }));
-  }, [hubPositions]);
+    const mumbaiNorm = mumbaiPos.clone().normalize();
 
-  useFrame((_, delta) => {
-    // Independent cloud layer rotation
-    if (cloudsRef.current && !prefersReducedMotion) {
-      cloudsRef.current.rotation.y += delta * 0.035;
-    }
-  });
+    return hubPositions.slice(1).map((hub) => {
+      // Calculate tangent departure vector from Mumbai toward destination
+      const targetNorm = hub.pos.clone().normalize();
+      const dot = Math.min(Math.max(mumbaiNorm.dot(targetNorm), -0.999), 0.999);
+      const tangent = targetNorm.clone().sub(mumbaiNorm.clone().multiplyScalar(dot)).normalize();
+
+      // Subtle outward start offset (~0.026 units) along each arc's own outbound trajectory
+      const offsetStart = mumbaiNorm
+        .clone()
+        .add(tangent.multiplyScalar(0.026))
+        .normalize()
+        .multiplyScalar(radius * 1.016);
+
+      return {
+        name: hub.name,
+        curve: createSphericalArc(offsetStart, hub.pos),
+      };
+    });
+  }, [hubPositions, radius]);
+
+  // 1. Core Arc Shader Material: directional brightness & opacity gradient from Mumbai outward
+  const coreMaterial = useMemo(() => {
+    return new THREE.ShaderMaterial({
+      uniforms: {
+        uColorStart: { value: new THREE.Color("#FF6A3D") },
+        uColorEnd: { value: new THREE.Color("#D64B1E") },
+        uOpacityStart: { value: 0.96 },
+        uOpacityEnd: { value: 0.65 },
+      },
+      vertexShader: `
+        varying vec2 vUv;
+        void main() {
+          vUv = uv;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform vec3 uColorStart;
+        uniform vec3 uColorEnd;
+        uniform float uOpacityStart;
+        uniform float uOpacityEnd;
+        varying vec2 vUv;
+        void main() {
+          float t = clamp(vUv.x, 0.0, 1.0);
+          vec3 col = mix(uColorStart, uColorEnd, t);
+          float alpha = mix(uOpacityStart, uOpacityEnd, t);
+          gl_FragColor = vec4(col, alpha);
+        }
+      `,
+      transparent: true,
+      depthWrite: false,
+      toneMapped: false,
+    });
+  }, []);
+
+  // 2. Additive Halo Glow Shader Material: soft ambient light emission around each corridor
+  const glowMaterial = useMemo(() => {
+    return new THREE.ShaderMaterial({
+      uniforms: {
+        uColorStart: { value: new THREE.Color("#FF6A3D") },
+        uColorEnd: { value: new THREE.Color("#D64B1E") },
+        uOpacityStart: { value: 0.22 },
+        uOpacityEnd: { value: 0.11 },
+      },
+      vertexShader: `
+        varying vec2 vUv;
+        void main() {
+          vUv = uv;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform vec3 uColorStart;
+        uniform vec3 uColorEnd;
+        uniform float uOpacityStart;
+        uniform float uOpacityEnd;
+        varying vec2 vUv;
+        void main() {
+          float t = clamp(vUv.x, 0.0, 1.0);
+          vec3 col = mix(uColorStart, uColorEnd, t);
+          float alpha = mix(uOpacityStart, uOpacityEnd, t);
+          gl_FragColor = vec4(col, alpha);
+        }
+      `,
+      transparent: true,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+      toneMapped: false,
+    });
+  }, []);
 
   return (
     <group rotation={[0, -1.35, 0]}>
@@ -190,35 +275,22 @@ function EarthSphere({ isDesktop }: { isDesktop: boolean }) {
         />
       </mesh>
 
-      {/* 2. Cloud Layer Sphere (Desktop only, excluded from raycasting) */}
-      {isDesktop && (
-        <mesh ref={cloudsRef} raycast={() => null}>
-          <sphereGeometry args={[radius * 1.012, 48, 48]} />
-          <meshStandardMaterial
-            map={cloudsMap}
-            transparent
-            opacity={0.36}
-            blending={THREE.NormalBlending}
-            depthWrite={false}
-          />
-        </mesh>
-      )}
-
-      {/* 3. Trade Corridor 3D Arcs (Unlit MeshBasicMaterial, toneMapped=false for pure #FF4D1C match) */}
+      {/* 2. Trade Corridor 3D Arcs: Dual Layer (Outer Additive Glow + Inner Gradient Core) */}
       {routeCurves.map((r, i) => (
-        <mesh key={`arc-${i}`} raycast={() => null}>
-          <tubeGeometry args={[r.curve, 64, 0.0075, 6, false]} />
-          <meshBasicMaterial
-            color="#FF4D1C"
-            toneMapped={false}
-            transparent
-            opacity={0.95}
-            depthWrite={false}
-          />
-        </mesh>
+        <group key={`arc-group-${i}`}>
+          {/* A. Soft Light-Bloom Halo (Wider radius, AdditiveBlending) */}
+          <mesh material={glowMaterial} raycast={() => null}>
+            <tubeGeometry args={[r.curve, 36, 0.018, 6, false]} />
+          </mesh>
+
+          {/* B. Core Corridor Tube with Directional Gradient */}
+          <mesh material={coreMaterial} raycast={() => null}>
+            <tubeGeometry args={[r.curve, 48, 0.0055, 6, false]} />
+          </mesh>
+        </group>
       ))}
 
-      {/* 4. Six Interactive Trade Hub Markers with Hover Tooltips */}
+      {/* 3. 11 Interactive Trade Hub Markers with Hover Tooltips */}
       <group>
         {hubPositions.map((hub, i) => (
           <HubMarker key={`pin-${i}`} hub={hub} />
@@ -246,16 +318,16 @@ export function TradeGlobe() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <div className="relative h-full w-full select-none cursor-grab active:cursor-grabbing">
+    <div className="relative h-full w-full overflow-hidden select-none cursor-grab active:cursor-grabbing">
       <Canvas
-        camera={{ position: [0, 0, 6.4], fov: 45 }}
+        camera={{ position: [0, 0, 6.5], fov: 45 }}
         dpr={[1, 2]}
         gl={{
           antialias: true,
           alpha: true,
           powerPreference: "high-performance",
         }}
-        className="h-full w-full bg-transparent"
+        className="h-full w-full bg-transparent overflow-hidden"
       >
         {/* Balanced 3-point lighting for vivid Earth colors across the globe */}
         <directionalLight position={[3.5, 2.5, 4.5]} intensity={1.9} />

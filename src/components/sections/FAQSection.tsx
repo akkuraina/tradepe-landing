@@ -79,7 +79,7 @@ export function FAQSection() {
   };
 
   return (
-    <section id="faq" className="relative bg-white text-[#0A0A0A] py-12 md:py-16 border-t border-black/10 scroll-mt-24">
+    <section id="faq" className="relative bg-transparent text-[#0A0A0A] py-12 md:py-16 border-t border-black/10 scroll-mt-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header with In-View Reveal Animation */}
@@ -110,7 +110,7 @@ export function FAQSection() {
               <motion.div key={idx} variants={itemVariants}>
                 <Accordion.Item
                   value={`item-${idx}`}
-                  className="rounded-3xl bg-[#FAFAFA] border border-black/15 overflow-hidden transition-colors data-[state=open]:border-[#FF4D1C]/60 shadow-sm"
+                  className="rounded-3xl bg-[#F8F5EE] border border-black/10 overflow-hidden transition-colors data-[state=open]:border-[#FF4D1C]/60 shadow-[0_4px_16px_-2px_rgba(0,0,0,0.03)]"
                 >
                   <Accordion.Header>
                     <Accordion.Trigger className="w-full flex items-center justify-between p-6 text-left font-display text-lg sm:text-xl font-bold text-[#0A0A0A] hover:text-[#FF4D1C] transition-colors group cursor-pointer">

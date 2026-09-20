@@ -17,7 +17,7 @@ const CORRIDORS = [
 
 export function MarqueeStrip() {
   return (
-    <section className="relative w-full overflow-hidden bg-white py-1">
+    <section className="relative w-full overflow-hidden bg-transparent py-1">
       <Marquee items={CORRIDORS} direction="left" variant="bordered" />
     </section>
   );

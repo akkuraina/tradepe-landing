@@ -63,7 +63,7 @@ export function MetricsSection() {
   };
 
   return (
-    <section id="metrics" className="relative bg-white text-[#0A0A0A] py-12 md:py-16 border-t border-black/10 scroll-mt-24">
+    <section id="metrics" className="relative bg-transparent text-[#0A0A0A] py-12 md:py-16 border-t border-black/10 scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header with In-View Reveal Animation */}
@@ -91,7 +91,7 @@ export function MetricsSection() {
             <motion.div
               key={idx}
               variants={itemVariants}
-              className="h-20 sm:h-24 px-4 py-3 rounded-2xl bg-white border border-black/10 flex items-center justify-center shadow-sm hover:border-[#FF4D1C]/40 hover:shadow-md transition-all duration-300 group"
+              className="h-20 sm:h-24 px-4 py-3 rounded-2xl bg-[#F8F5EE] border border-black/10 flex items-center justify-center shadow-[0_4px_16px_-2px_rgba(0,0,0,0.03)] hover:border-[#FF4D1C]/40 hover:shadow-md transition-all duration-300 group"
             >
               <Image
                 src={partner.src}

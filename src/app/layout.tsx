@@ -72,7 +72,7 @@ export default function RootLayout({
       lang="en"
       className={`${fraunces.variable} ${instrumentSerif.variable} ${inter.variable}`}
     >
-      <body className="bg-white text-[#0A0A0A] antialiased selection:bg-[#FF4D1C] selection:text-white relative min-h-screen overflow-x-hidden">
+      <body className="text-[#0A0A0A] antialiased selection:bg-[#FF4D1C] selection:text-white relative min-h-screen overflow-x-hidden">
         <SmoothScrollProvider>
           <GrainOverlay />
           {children}

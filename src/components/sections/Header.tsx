@@ -74,7 +74,7 @@ export function Header({ onRequestAccess }: HeaderProps) {
         className={cn(
           "fixed top-0 left-0 right-0 z-40 transition-all duration-300",
           scrolled
-            ? "bg-white/90 backdrop-blur-md border-b border-black/10 py-3.5 shadow-sm"
+            ? "bg-[#F7F4EF]/90 backdrop-blur-md border-b border-black/10 py-3.5 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)]"
             : "bg-transparent py-5 md:py-6"
         )}
       >
@@ -92,7 +92,7 @@ export function Header({ onRequestAccess }: HeaderProps) {
           </a>
 
           {/* 2. Center Navigation Links (Desktop) */}
-          <nav className="hidden lg:flex items-center gap-1 rounded-full border border-black/10 bg-white/80 px-5 py-2 backdrop-blur-md shadow-sm">
+          <nav className="hidden lg:flex items-center gap-1 rounded-full border border-black/10 bg-[#F7F4EF]/85 px-5 py-2 backdrop-blur-md shadow-sm">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -168,7 +168,7 @@ export function Header({ onRequestAccess }: HeaderProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-x-0 top-[65px] z-30 bg-white/95 border-b border-black/15 px-6 py-8 backdrop-blur-xl shadow-xl sm:hidden"
+            className="fixed inset-x-0 top-[65px] z-30 bg-[#F7F4EF]/98 border-b border-black/15 px-6 py-8 backdrop-blur-xl shadow-xl sm:hidden"
           >
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) => (

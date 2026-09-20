@@ -22,7 +22,7 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen bg-white text-[#0A0A0A] selection:bg-[#FF4D1C] selection:text-white">
+    <div className="relative min-h-screen bg-transparent text-[#0A0A0A] selection:bg-[#FF4D1C] selection:text-white">
       {/* Editorial Fixed Header */}
       <Header onRequestAccess={() => handleOpenAccessModal()} />
 

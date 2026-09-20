@@ -19,7 +19,7 @@
   }
 
   html {
-    background-color: #ffffff;
+    background-color: #f7f4ef;
     color: #0a0a0a;
     font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
     text-rendering: optimizeLegibility;
@@ -29,7 +29,12 @@
   }
 
   body {
-    background-color: #ffffff;
+    background-color: #f7f4ef;
+    background-image: url("/backdrop.jpg");
+    background-repeat: repeat;
+    background-size: cover;
+    background-position: center top;
+    background-attachment: fixed;
     color: #0a0a0a;
     overflow-x: hidden;
     min-height: 100vh;

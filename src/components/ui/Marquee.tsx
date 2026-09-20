@@ -83,7 +83,7 @@ export function Marquee({
   return (
     <div
       className={cn(
-        "relative w-full overflow-hidden py-4 md:py-5 bg-[#FAFAFA]",
+        "relative w-full overflow-hidden py-4 md:py-5 bg-white/20 backdrop-blur-xs",
         variant === "bordered" && "border-y border-black/10",
         className
       )}
@@ -91,11 +91,11 @@ export function Marquee({
     >
       {/* Side Fade Gradients */}
       <div
-        className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#FAFAFA] to-transparent z-10"
+        className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#f7f4ef] to-transparent z-10"
         aria-hidden="true"
       />
       <div
-        className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#FAFAFA] to-transparent z-10"
+        className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#f7f4ef] to-transparent z-10"
         aria-hidden="true"
       />
 
