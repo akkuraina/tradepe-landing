@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight, Activity } from "lucide-react";
-import { MagneticButton } from "@/components/ui/MagneticButton";
 import { useSmoothScroll, useLenis } from "@/components/ui/SmoothScroll";
 import { cn } from "@/lib/utils";
 
@@ -107,44 +107,36 @@ export function Header({ onRequestAccess }: HeaderProps) {
 
           {/* 3. Right Actions: Login & Get Started (Desktop -> /404) */}
           <div className="hidden sm:flex items-center gap-3">
-            <MagneticButton
-              variant="outline"
-              size="sm"
+            <Link
               href="/404"
-              className="text-xs px-4 py-2 text-[#0A0A0A] border-black/20 hover:border-black hover:text-[#0A0A0A] hover:bg-black/5"
+              className="text-xs px-4 py-2 font-medium text-[#0A0A0A] rounded-full border border-black/15 bg-transparent hover:border-black/40 hover:bg-black/5 hover:text-[#0A0A0A] transition-all duration-200 active:scale-[0.98]"
             >
               <span>Login</span>
-            </MagneticButton>
+            </Link>
 
-            <MagneticButton
-              variant="primary"
-              size="sm"
+            <Link
               href="/404"
-              className="text-xs px-5 py-2"
+              className="text-xs px-4 py-2 font-medium text-white bg-[#FF4D1C] rounded-full inline-flex items-center gap-1.5 hover:bg-[#E03D0F] hover:shadow-xs transition-all duration-200 active:scale-[0.98]"
             >
               <span>Get Started</span>
               <ArrowUpRight className="h-3.5 w-3.5" />
-            </MagneticButton>
+            </Link>
           </div>
 
           {/* Mobile Menu Toggle & CTA */}
           <div className="flex items-center gap-2 sm:hidden">
-            <MagneticButton
-              variant="outline"
-              size="sm"
+            <Link
               href="/404"
-              className="px-2.5 py-1 text-xs text-[#0A0A0A] border-black/20"
+              className="px-2.5 py-1 text-xs font-medium text-[#0A0A0A] rounded-full border border-black/15 hover:bg-black/5 transition-colors"
             >
               Login
-            </MagneticButton>
-            <MagneticButton
-              variant="primary"
-              size="sm"
+            </Link>
+            <Link
               href="/404"
-              className="px-3 py-1 text-xs"
+              className="px-3 py-1 text-xs font-medium text-white bg-[#FF4D1C] rounded-full hover:bg-[#E03D0F] transition-colors"
             >
               Get Started
-            </MagneticButton>
+            </Link>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 text-[#0A0A0A] hover:text-[#FF4D1C] rounded-lg bg-black/5 border border-black/10 cursor-pointer"
@@ -188,25 +180,21 @@ export function Header({ onRequestAccess }: HeaderProps) {
                   <span>Settlement Latency: &lt; 0.04s</span>
                 </div>
                 <div className="grid grid-cols-2 gap-3 pt-2">
-                  <MagneticButton
-                    variant="outline"
-                    size="md"
+                  <Link
                     href="/404"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="w-full justify-center text-[#0A0A0A] border-black/20"
+                    className="w-full flex items-center justify-center py-2.5 px-4 text-xs font-medium text-[#0A0A0A] rounded-full border border-black/20 hover:bg-black/5 transition-colors"
                   >
                     <span>Login</span>
-                  </MagneticButton>
-                  <MagneticButton
-                    variant="primary"
-                    size="md"
+                  </Link>
+                  <Link
                     href="/404"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="w-full justify-center"
+                    className="w-full flex items-center justify-center gap-1.5 py-2.5 px-4 text-xs font-medium text-white bg-[#FF4D1C] rounded-full hover:bg-[#E03D0F] transition-colors"
                   >
                     <span>Get Started</span>
                     <ArrowUpRight className="h-4 w-4" />
-                  </MagneticButton>
+                  </Link>
                 </div>
               </div>
             </div>

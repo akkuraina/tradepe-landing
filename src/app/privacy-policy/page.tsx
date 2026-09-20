@@ -12,7 +12,7 @@ export default function PrivacyPolicyPage() {
   return (
     <div className="min-h-screen bg-transparent text-[#0A0A0A] selection:bg-[#FF4D1C] selection:text-white">
       {/* Top Bar */}
-      <header className="border-b border-black/10 py-6 px-4 sm:px-6 lg:px-8 bg-[#F7F4EF]/90 backdrop-blur-md sticky top-0 z-30">
+      <header className="border-b border-black/10 py-4 px-4 sm:px-6 lg:px-8 bg-[#F7F4EF]/90 backdrop-blur-md sticky top-0 z-30">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <Link
             href="/"
@@ -28,22 +28,18 @@ export default function PrivacyPolicyPage() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div className="mb-12 border-b border-black/10 pb-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/5 border border-black/10 text-xs font-mono text-[#FF4D1C] font-bold mb-4">
-            <Lock className="h-3.5 w-3.5" />
-            <span>DATA GOVERNANCE // TRADEPE TECH PVT. LTD.</span>
-          </div>
-          <h1 className="font-display text-4xl sm:text-5xl font-bold tracking-tight text-[#0A0A0A] mb-4">
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <div className="mb-6 border-b border-black/10 pb-4">
+          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0A0A0A] mb-2">
             Privacy <span className="font-italic-accent text-[#FF4D1C]">Policy</span>
           </h1>
-          <p className="font-sans text-sm text-[#0A0A0A]/60">
+          <p className="font-sans text-xs sm:text-sm text-[#0A0A0A]/60">
             Effective Date: January 1, 2026 · <TradePeWordmark /> Tech Pvt. Ltd., 61, Mittal Chambers, Nariman Point, Mumbai 400021
           </p>
         </div>
 
-        <div className="space-y-10 font-sans text-sm sm:text-base text-[#0A0A0A]/80 leading-relaxed">
-          <section className="space-y-3">
+        <div className="space-y-6 font-sans text-sm sm:text-base text-[#0A0A0A]/80 leading-relaxed">
+          <section className="space-y-1.5">
             <h2 className="font-display text-2xl font-bold text-[#0A0A0A]">
               1. Information Collection &amp; KYB Data
             </h2>
@@ -52,7 +48,7 @@ export default function PrivacyPolicyPage() {
             </p>
           </section>
 
-          <section className="space-y-3">
+          <section className="space-y-1.5">
             <h2 className="font-display text-2xl font-bold text-[#0A0A0A]">
               2. Purpose of Processing
             </h2>
@@ -67,7 +63,7 @@ export default function PrivacyPolicyPage() {
             </ul>
           </section>
 
-          <section className="space-y-3">
+          <section className="space-y-1.5">
             <h2 className="font-display text-2xl font-bold text-[#0A0A0A]">
               3. Data Security &amp; Encryption Standards
             </h2>
@@ -76,14 +72,14 @@ export default function PrivacyPolicyPage() {
             </p>
           </section>
 
-          <section className="space-y-3">
+          <section className="space-y-1.5">
             <h2 className="font-display text-2xl font-bold text-[#0A0A0A]">
               4. Contact the Data Protection Officer
             </h2>
             <p>
               For privacy inquiries, audit reports, or data subject requests, please contact our Data Protection Office at:
             </p>
-            <div className="p-4 rounded-xl bg-[#FAFAFA] border border-black/10 font-mono text-xs text-[#0A0A0A] space-y-1">
+            <div className="p-3.5 rounded-xl bg-[#F8F5EE] border border-black/10 font-mono text-xs text-[#0A0A0A] space-y-1">
               <div>Email: <strong>contactus@tradepe.com</strong></div>
               <div>Address: 61, Mittal Chambers, Nariman Point, Mumbai, Maharashtra 400021</div>
             </div>

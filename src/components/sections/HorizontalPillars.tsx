@@ -231,7 +231,7 @@ export function HorizontalPillars({ onRequestAccess }: HorizontalPillarsProps) {
                           <div className="h-10 w-10 rounded-xl bg-[#FF4D1C]/15 border border-[#FF4D1C]/30 flex items-center justify-center text-[#FF4D1C]">
                             <Icon className="h-5 w-5" />
                           </div>
-                          <span className="font-mono text-xs uppercase tracking-widest text-[#FF4D1C] font-bold">
+                          <span className="font-italic-accent text-lg sm:text-xl font-normal text-[#0A0A0A]">
                             {pillar.tag}
                           </span>
                         </div>
@@ -290,8 +290,8 @@ export function HorizontalPillars({ onRequestAccess }: HorizontalPillarsProps) {
                   <div className="h-9 w-9 rounded-lg bg-[#FF4D1C]/15 border border-[#FF4D1C]/30 flex items-center justify-center text-[#FF4D1C]">
                     <Icon className="h-4 w-4" />
                   </div>
-                  <span className="font-mono text-xs uppercase tracking-widest text-[#FF4D1C] font-bold">
-                    Pillar {pillar.id} · {pillar.tag}
+                  <span className="font-italic-accent text-base sm:text-lg font-normal text-[#0A0A0A]">
+                    {pillar.tag}
                   </span>
                 </div>
 

@@ -12,7 +12,7 @@ export default function TermsConditionsPage() {
   return (
     <div className="min-h-screen bg-transparent text-[#0A0A0A] selection:bg-[#FF4D1C] selection:text-white">
       {/* Top Bar */}
-      <header className="border-b border-black/10 py-6 px-4 sm:px-6 lg:px-8 bg-[#F7F4EF]/90 backdrop-blur-md sticky top-0 z-30">
+      <header className="border-b border-black/10 py-4 px-4 sm:px-6 lg:px-8 bg-[#F7F4EF]/90 backdrop-blur-md sticky top-0 z-30">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <Link
             href="/"
@@ -28,22 +28,18 @@ export default function TermsConditionsPage() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div className="mb-12 border-b border-black/10 pb-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/5 border border-black/10 text-xs font-mono text-[#FF4D1C] font-bold mb-4">
-            <Scale className="h-3.5 w-3.5" />
-            <span>LEGAL AGREEMENT // TRADEPE TECH PVT. LTD.</span>
-          </div>
-          <h1 className="font-display text-4xl sm:text-5xl font-bold tracking-tight text-[#0A0A0A] mb-4">
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <div className="mb-6 border-b border-black/10 pb-4">
+          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0A0A0A] mb-2">
             Terms of <span className="font-italic-accent text-[#FF4D1C]">Service</span>
           </h1>
-          <p className="font-sans text-sm text-[#0A0A0A]/60">
+          <p className="font-sans text-xs sm:text-sm text-[#0A0A0A]/60">
             Last Updated: January 15, 2026 · Registered Office: 61, Mittal Chambers, Nariman Point, Mumbai, Maharashtra, India - 400021
           </p>
         </div>
 
-        <div className="space-y-10 font-sans text-sm sm:text-base text-[#0A0A0A]/80 leading-relaxed">
-          <section className="space-y-3">
+        <div className="space-y-6 font-sans text-sm sm:text-base text-[#0A0A0A]/80 leading-relaxed">
+          <section className="space-y-1.5">
             <h2 className="font-display text-2xl font-bold text-[#0A0A0A]">
               1. Master Services &amp; Platform Scope
             </h2>

@@ -154,6 +154,8 @@ function EarthSphere({ isDesktop }: { isDesktop: boolean }) {
 
   if (dayMap) {
     dayMap.colorSpace = THREE.SRGBColorSpace;
+    dayMap.wrapS = THREE.RepeatWrapping;
+    dayMap.wrapT = THREE.ClampToEdgeWrapping;
   }
 
   // Precompute 3D vectors for the 11 trade corridor hubs
@@ -269,8 +271,8 @@ function EarthSphere({ isDesktop }: { isDesktop: boolean }) {
         <meshStandardMaterial
           map={dayMap}
           normalMap={normalMap}
-          normalScale={new THREE.Vector2(0.4, 0.4)}
-          roughness={0.65}
+          normalScale={new THREE.Vector2(0.35, 0.35)}
+          roughness={0.55}
           metalness={0.02}
         />
       </mesh>
@@ -329,10 +331,11 @@ export function TradeGlobe() {
         }}
         className="h-full w-full bg-transparent overflow-hidden"
       >
-        {/* Balanced 3-point lighting for vivid Earth colors across the globe */}
-        <directionalLight position={[3.5, 2.5, 4.5]} intensity={1.9} />
-        <ambientLight intensity={0.65} />
-        <directionalLight position={[-3.5, -2.0, -2.0]} intensity={0.35} />
+        {/* Soft, photorealistic planet lighting with high fill to prevent black void crushing */}
+        <hemisphereLight args={["#ffffff", "#4a5d6e", 1.45]} />
+        <directionalLight position={[4.0, 3.0, 4.0]} intensity={1.2} />
+        <directionalLight position={[-4.0, -2.0, -3.0]} intensity={0.7} />
+        <directionalLight position={[0, 1.0, 5.0]} intensity={0.45} />
 
         <Suspense fallback={null}>
           <EarthSphere isDesktop={isDesktop} />

@@ -12,7 +12,7 @@ export default function GrievancePolicyPage() {
   return (
     <div className="min-h-screen bg-transparent text-[#0A0A0A] selection:bg-[#FF4D1C] selection:text-white">
       {/* Top Bar */}
-      <header className="border-b border-black/10 py-6 px-4 sm:px-6 lg:px-8 bg-[#F7F4EF]/90 backdrop-blur-md sticky top-0 z-30">
+      <header className="border-b border-black/10 py-4 px-4 sm:px-6 lg:px-8 bg-[#F7F4EF]/90 backdrop-blur-md sticky top-0 z-30">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <Link
             href="/"
@@ -28,22 +28,18 @@ export default function GrievancePolicyPage() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div className="mb-12 border-b border-black/10 pb-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/5 border border-black/10 text-xs font-mono text-[#FF4D1C] font-bold mb-4">
-            <AlertCircle className="h-3.5 w-3.5" />
-            <span>STATUTORY REDRESSAL FRAMEWORK</span>
-          </div>
-          <h1 className="font-display text-4xl sm:text-5xl font-bold tracking-tight text-[#0A0A0A] mb-4">
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <div className="mb-6 border-b border-black/10 pb-4">
+          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0A0A0A] mb-2">
             Grievance <span className="font-italic-accent text-[#FF4D1C]">Policy</span>
           </h1>
-          <p className="font-sans text-sm text-[#0A0A0A]/60">
+          <p className="font-sans text-xs sm:text-sm text-[#0A0A0A]/60">
             <TradePeWordmark /> Tech Pvt. Ltd. · 61, Mittal Chambers, Nariman Point, Mumbai, Maharashtra, India - 400021
           </p>
         </div>
 
-        <div className="space-y-10 font-sans text-sm sm:text-base text-[#0A0A0A]/80 leading-relaxed">
-          <section className="space-y-3">
+        <div className="space-y-6 font-sans text-sm sm:text-base text-[#0A0A0A]/80 leading-relaxed">
+          <section className="space-y-1.5">
             <h2 className="font-display text-2xl font-bold text-[#0A0A0A]">
               1. Redressal Philosophy &amp; Commitment
             </h2>
@@ -52,14 +48,14 @@ export default function GrievancePolicyPage() {
             </p>
           </section>
 
-          <section className="space-y-4">
+          <section className="space-y-2">
             <h2 className="font-display text-2xl font-bold text-[#0A0A0A]">
               2. Escalation Matrix
             </h2>
             
-            <div className="space-y-4">
+            <div className="space-y-3 pt-1">
               {/* Level 1 */}
-              <div className="rounded-2xl bg-[#FAFAFA] border border-black/15 p-5 space-y-2">
+              <div className="rounded-2xl bg-[#F8F5EE] border border-black/10 p-4 space-y-1.5">
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-xs font-bold text-[#FF4D1C] uppercase">Level 1 — Primary Support Desk</span>
                   <span className="font-mono text-xs text-[#0A0A0A]/50 font-semibold">TAT: 4 Hours</span>
@@ -73,7 +69,7 @@ export default function GrievancePolicyPage() {
               </div>
 
               {/* Level 2 */}
-              <div className="rounded-2xl bg-[#FAFAFA] border border-black/15 p-5 space-y-2">
+              <div className="rounded-2xl bg-[#F8F5EE] border border-black/10 p-4 space-y-1.5">
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-xs font-bold text-[#FF4D1C] uppercase">Level 2 — Principal Grievance Officer</span>
                   <span className="font-mono text-xs text-[#0A0A0A]/50 font-semibold">TAT: 24 Hours</span>
@@ -81,7 +77,7 @@ export default function GrievancePolicyPage() {
                 <p className="text-xs sm:text-sm text-[#0A0A0A]/80">
                   If the resolution at Level 1 is unsatisfactory within 24 hours, escalate directly to the Nodal Grievance Officer.
                 </p>
-                <div className="font-mono text-xs text-[#0A0A0A] space-y-1">
+                <div className="font-mono text-xs text-[#0A0A0A] space-y-0.5">
                   <div>Officer Name: <strong>Grievance Redressal Desk</strong></div>
                   <div>Address: <strong>61, Mittal Chambers, Nariman Point, Mumbai, Maharashtra 400021</strong></div>
                   <div>Email: <strong>contactus@tradepe.com</strong></div>
@@ -90,7 +86,7 @@ export default function GrievancePolicyPage() {
             </div>
           </section>
 
-          <section className="space-y-3">
+          <section className="space-y-1.5">
             <h2 className="font-display text-2xl font-bold text-[#0A0A0A]">
               3. Resolution Timeframes
             </h2>
